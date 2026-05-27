@@ -152,33 +152,30 @@ img {
 
 /* Hero */
 
+/* Hero */
+
 .hero-section {
   position: relative;
+  min-height: 100vh;
   padding-top: 74px;
   overflow: hidden;
   background: #f5c400;
-
-  /* altura mais parecida com a referência */
-  min-height: 620px;
 }
 
+/* Fundo oficial do estádio */
 .hero-section::before {
   content: "";
   position: absolute;
   inset: 74px 0 0 0;
   background-image: url("../assets/fundo.png");
   background-repeat: no-repeat;
-
-  /* preenche sem deixar buraco verde */
   background-size: cover;
-
-  /* joga a imagem mais para baixo */
   background-position: center bottom;
-
   opacity: 1;
   z-index: 0;
 }
 
+/* Camada leve só para ajudar leitura, sem apagar o fundo */
 .hero-overlay {
   position: absolute;
   inset: 74px 0 0 0;
@@ -186,38 +183,37 @@ img {
   pointer-events: none;
   background: linear-gradient(
     90deg,
-    rgba(255, 214, 0, 0.08) 0%,
-    rgba(255, 214, 0, 0.03) 45%,
-    rgba(255, 214, 0, 0) 100%
+    rgba(255, 215, 0, 0.06) 0%,
+    rgba(255, 215, 0, 0.02) 45%,
+    rgba(255, 215, 0, 0) 100%
   );
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  min-height: calc(620px - 74px);
+  min-height: calc(100vh - 74px);
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  grid-template-columns: 0.92fr 1.08fr;
   align-items: center;
   gap: 40px;
 }
 
-
 .hero-text {
-  padding-top: 36px;
+  padding-top: 18px;
 }
 
 .hero-text h1 {
   line-height: 0.86;
   letter-spacing: -3px;
-  margin-bottom: 26px;
+  margin-bottom: 24px;
   transform: rotate(-4deg);
   transform-origin: left center;
 }
 
 .hero-text h1 span {
   display: block;
-  font-size: clamp(64px, 8vw, 135px);
+  font-size: clamp(72px, 8.4vw, 138px);
   font-weight: 900;
   color: #00732f;
   text-shadow: 0 4px 0 rgba(0, 59, 25, 0.08);
@@ -225,7 +221,7 @@ img {
 
 .hero-text h1 strong {
   display: block;
-  font-size: clamp(68px, 8.5vw, 145px);
+  font-size: clamp(76px, 8.8vw, 148px);
   font-weight: 900;
   color: #004bbb;
   text-shadow: 0 5px 0 rgba(0, 29, 96, 0.1);
@@ -233,9 +229,9 @@ img {
 
 .hero-text p {
   max-width: 455px;
-  margin-bottom: 34px;
+  margin-bottom: 30px;
   color: #07160b;
-  font-size: 20px;
+  font-size: 19px;
   line-height: 1.28;
   font-weight: 800;
 }
@@ -244,7 +240,7 @@ img {
   display: flex;
   align-items: center;
   gap: 24px;
-  margin-bottom: 26px;
+  margin-bottom: 24px;
 }
 
 .hero-benefits div {
@@ -309,32 +305,33 @@ img {
 
 .hero-product {
   position: relative;
-  min-height: 520px;
+  min-height: calc(100vh - 74px);
 }
 
 .hero-shirt {
   position: absolute;
-  top: -8px;
-  right: 20px;
-  width: min(600px, 48vw);
+  top: 18px;
+  right: 10px;
+  width: min(650px, 50vw);
   filter: drop-shadow(0 30px 35px rgba(0,0,0,0.32));
   animation: floatShirt 5s ease-in-out infinite;
 }
 
 .promo-badge {
   position: absolute;
-  left: -12px;
-  top: 46%;
-  width: 150px;
+  left: -30px;
+  top: 43%;
+  width: 158px;
   z-index: 3;
   filter: drop-shadow(0 12px 18px rgba(0,0,0,0.28));
+  animation: pulseBadge 2.5s ease-in-out infinite;
 }
 
 .hero-ball {
   position: absolute;
-  left: 70px;
-  bottom: 0;
-  width: 130px;
+  left: 55px;
+  bottom: 42px;
+  width: 145px;
   filter: drop-shadow(0 18px 20px rgba(0,0,0,0.35));
 }
 
