@@ -531,6 +531,55 @@ img {
   }
 }
 
+
+/* ================================
+   AJUSTE SOMENTE DOS ELEMENTOS
+   Não mexe no fundo do hero
+================================ */
+
+@media (min-width: 901px) {
+  /* Move todo o bloco de informações para esquerda e para baixo */
+  .hero-text {
+    transform: translate(-145px, 48px);
+    margin-bottom: 0px;
+  }
+
+  /* Mantém texto mais próximo da referência */
+  .hero-text h1 {
+    margin-bottom: 26px;
+  }
+
+  .hero-text p {
+    max-width: 430px;
+    margin-bottom: 30px;
+  }
+
+  .hero-benefits {
+    margin-bottom: 22px;
+  }
+
+  /* Move a camiseta apenas para baixo */
+  .hero-shirt {
+    top: 120px;
+    right: -5px;
+    width: min(650px, 50vw);
+  }
+
+  /* Selo acompanha melhor a nova posição da camiseta */
+  .promo-badge {
+    left: -90px;
+    top: 510px;
+  }
+
+  /* Bola um pouco mais baixa e alinhada com a base */
+  .hero-ball {
+    left: 55px;
+    bottom: 5px;
+  }
+}
+
+
+
 /* Camisa Azul */
 
 .blue-shirt-section {
@@ -572,24 +621,28 @@ img {
   min-height: 300px;
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
-  align-items: center;
+  align-items: stretch;
   gap: 36px;
 }
 
 .blue-shirt-product {
   position: relative;
+  height: 300px;
   min-height: 300px;
+  align-self: end;
+  overflow: visible;
 }
 
 .blue-shirt-img {
   position: absolute;
   left: 35px;
-  bottom: -18px;
+  top: auto;
+  bottom: -20px;
   width: min(575px, 49vw);
   filter: drop-shadow(0 28px 32px rgba(0, 0, 0, 0.48));
-  animation: blueShirtFloat 5.5s ease-in-out infinite;
+  animation: none !important;
+  transform: none !important;
 }
-
 .blue-ball {
   position: absolute;
   left: -10px;
@@ -706,12 +759,3 @@ img {
     inset 0 1px 0 rgba(255, 255, 255, 0.42);
 }
 
-@keyframes blueShirtFloat {
-  0%, 100% {
-    transform: translateY(0) rotate(-1deg);
-  }
-
-  50% {
-    transform: translateY(-10px) rotate(1deg);
-  }
-}
