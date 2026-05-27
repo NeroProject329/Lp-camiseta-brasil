@@ -154,28 +154,35 @@ img {
 
 /* Hero */
 
+/* Hero */
+
 .hero-section {
   position: relative;
-  min-height: 100vh;
   padding-top: 74px;
   overflow: hidden;
   background: #f5c400;
+
+  /* Desktop mais próximo da proporção real da arte */
+  min-height: 680px;
 }
 
-/* Fundo oficial do estádio */
 .hero-section::before {
   content: "";
   position: absolute;
   inset: 74px 0 0 0;
   background-image: url("../assets/fundo.png");
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center bottom;
+
+  /* Mantém a arte grande, mas deixa aparecer mais topo */
+  background-size: 100% auto;
+
+  /* Desce só um pouco sem cortar as luminárias */
+  background-position: center top;
+
   opacity: 1;
   z-index: 0;
 }
 
-/* Camada leve só para ajudar leitura, sem apagar o fundo */
 .hero-overlay {
   position: absolute;
   inset: 74px 0 0 0;
@@ -183,18 +190,18 @@ img {
   pointer-events: none;
   background: linear-gradient(
     90deg,
-    rgba(255, 215, 0, 0.06) 0%,
-    rgba(255, 215, 0, 0.02) 45%,
-    rgba(255, 215, 0, 0) 100%
+    rgba(255, 214, 0, 0.06) 0%,
+    rgba(255, 214, 0, 0.02) 45%,
+    rgba(255, 214, 0, 0) 100%
   );
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  min-height: calc(100vh - 74px);
+  min-height: calc(680px - 74px);
   display: grid;
-  grid-template-columns: 0.92fr 1.08fr;
+  grid-template-columns: 0.9fr 1.1fr;
   align-items: center;
   gap: 40px;
 }
