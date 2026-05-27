@@ -531,3 +531,187 @@ img {
   }
 }
 
+/* Camisa Azul */
+
+.blue-shirt-section {
+  position: relative;
+  overflow: hidden;
+  min-height: 300px;
+  background: #001b45;
+}
+
+.blue-shirt-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../assets/fundo-azul.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  z-index: 0;
+}
+
+.blue-shirt-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 16, 52, 0.1) 0%,
+      rgba(0, 16, 52, 0.15) 42%,
+      rgba(0, 16, 52, 0.36) 100%
+    );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.blue-shirt-content {
+  position: relative;
+  z-index: 2;
+  min-height: 300px;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 36px;
+}
+
+.blue-shirt-product {
+  position: relative;
+  min-height: 300px;
+}
+
+.blue-shirt-img {
+  position: absolute;
+  left: 35px;
+  bottom: -18px;
+  width: min(575px, 49vw);
+  filter: drop-shadow(0 28px 32px rgba(0, 0, 0, 0.48));
+  animation: blueShirtFloat 5.5s ease-in-out infinite;
+}
+
+.blue-ball {
+  position: absolute;
+  left: -10px;
+  bottom: -4px;
+  width: 145px;
+  filter: drop-shadow(0 18px 22px rgba(0, 0, 0, 0.42));
+}
+
+.blue-shirt-text {
+  max-width: 530px;
+  padding-top: 12px;
+}
+
+.blue-stars {
+  color: #ffd400;
+  font-size: 18px;
+  letter-spacing: 5px;
+  line-height: 1;
+  margin-bottom: 8px;
+  text-shadow: 0 0 12px rgba(255, 212, 0, 0.5);
+}
+
+.blue-shirt-text h2 {
+  font-size: clamp(42px, 4vw, 62px);
+  line-height: 0.92;
+  font-weight: 900;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-style: italic;
+  margin-bottom: 5px;
+  text-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+.blue-edition {
+  display: block;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 22px;
+}
+
+.blue-shirt-text p {
+  max-width: 455px;
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 1.45;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.blue-benefits {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  margin-bottom: 28px;
+}
+
+.blue-benefits div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.blue-benefits span {
+  font-size: 24px;
+  filter: grayscale(1) brightness(5);
+}
+
+.blue-benefits strong {
+  display: block;
+  color: #ffffff;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.blue-benefits small {
+  display: block;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.blue-button {
+  width: fit-content;
+  min-width: 255px;
+  height: 55px;
+  padding: 0 32px;
+  border-radius: 7px;
+  background: linear-gradient(180deg, #ffd829, #e4a900);
+  box-shadow:
+    0 14px 28px rgba(255, 195, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #06121f;
+  font-size: 15px;
+  font-weight: 900;
+  text-transform: uppercase;
+  transition: 0.25s ease;
+}
+
+.blue-button:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 18px 36px rgba(255, 195, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+}
+
+@keyframes blueShirtFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
