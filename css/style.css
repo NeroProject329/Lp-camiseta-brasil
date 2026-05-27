@@ -51,7 +51,7 @@ img {
 }
 
 .logo img {
-  width: 118px;
+  width: 108px;
 }
 
 .desktop-nav {
@@ -540,13 +540,14 @@ img {
 @media (min-width: 901px) {
   /* Move todo o bloco de informações para esquerda e para baixo */
   .hero-text {
-    transform: translate(-145px, 48px);
+    transform: translate(-145px, 98px);
     margin-bottom: 0px;
   }
 
   /* Mantém texto mais próximo da referência */
   .hero-text h1 {
     margin-bottom: 26px;
+    transform: translate(-115px, 78px);
   }
 
   .hero-text p {
@@ -560,9 +561,9 @@ img {
 
   /* Move a camiseta apenas para baixo */
   .hero-shirt {
-    top: 180px;
-    right: -25px;
-    width: min(950px, 80vw);
+    top: 77px;
+    right: -85px;
+    width: min(750px, 60vw);
   }
 
   /* Selo acompanha melhor a nova posição da camiseta */
@@ -578,6 +579,30 @@ img {
   }
 }
 
+
+/* ================================
+   LOGO GRANDE NO HERO
+   Substitui o texto VAAAAII BRASIL
+================================ */
+
+@media (min-width: 901px) {
+  .hero-logo-title {
+    width: 100%;
+    margin-bottom: 24px;
+    transform: rotate(-4deg);
+    transform-origin: left center;
+  }
+
+  .hero-logo-title img {
+    width: min(620px, 44vw);
+    height: auto;
+    left: -10px !important;
+    object-fit: contain;
+    filter:
+      drop-shadow(0 5px 0 rgba(0, 65, 25, 0.08))
+      drop-shadow(0 12px 18px rgba(0, 0, 0, 0.12));
+  }
+}
 
 
 /* Camisa Azul */
