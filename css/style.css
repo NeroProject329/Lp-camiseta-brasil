@@ -587,6 +587,18 @@ img {
 }
 
 
+/* =========================================
+   HERO — ÍCONE DO BOTÃO COMPRAR AGORA
+========================================= */
+
+.primary-button img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  display: block;
+  flex: 0 0 38px;
+}
+
 /* ================================
    AJUSTE SOMENTE DOS ELEMENTOS
    Não mexe no fundo do hero
@@ -959,6 +971,20 @@ img {
   }
 }
 
+
+/* =========================================
+   Blue — ÍCONE DO BOTÃO COMPRAR AGORA
+========================================= */
+
+.blue-button img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  display: block;
+  flex: 0 0 38px;
+}
+
+
 /* Camisa Preta */
 
 .black-shirt-section {
@@ -1157,6 +1183,69 @@ img {
     gap: 50px;
   }
 }
+
+
+/* =========================================
+   Blue — ÍCONE DO BOTÃO COMPRAR AGORA
+========================================= */
+
+.blue-button img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  display: block;
+  flex: 0 0 38px;
+}
+
+/* =========================================
+   CAMISETA PRETA — ÍCONES
+========================================= */
+
+@media (min-width: 901px) {
+  .black-shirt-features {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+    margin: 22px 0 24px;
+  }
+
+  .black-shirt-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .black-shirt-feature img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.38));
+  }
+
+  .black-shirt-feature span {
+    color: #ffffff;
+    font-size: 11px;
+    line-height: 1.05;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+}
+
+
+/* =========================================
+   Black — ÍCONE DO BOTÃO COMPRAR AGORA
+========================================= */
+
+.black-button img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  display: block;
+  flex: 0 0 38px;
+}
+
 
 
 /* =========================================
