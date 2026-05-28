@@ -922,6 +922,43 @@ img {
     inset 0 1px 0 rgba(255, 255, 255, 0.42);
 }
 
+
+/* =========================================
+   CAMISETA AZUL — ÍCONES
+========================================= */
+
+@media (min-width: 901px) {
+  .blue-shirt-features {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+    margin: 22px 0 24px;
+  }
+
+  .blue-shirt-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .blue-shirt-feature img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.32));
+  }
+
+  .blue-shirt-feature span {
+    color: #ffffff;
+    font-size: 11px;
+    line-height: 1.05;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+}
+
 /* Camisa Preta */
 
 .black-shirt-section {
