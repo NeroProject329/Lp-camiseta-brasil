@@ -150,6 +150,61 @@ img {
   display: none;
 }
 
+/* =========================================
+   NAVBAR — ÍCONES PERSONALIZADOS
+========================================= */
+
+.shield-icon {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 26px;
+  display: grid;
+  place-items: center;
+}
+
+.shield-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.cart-button {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.cart-button img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  display: block;
+}
+
+.cart-button span {
+  position: absolute;
+  top: -2px;
+  right: 0.5;
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #0046a8;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+
 /* Hero */
 
 /* Hero */
