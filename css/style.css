@@ -2242,3 +2242,327 @@ img {
 .footer-bottom a:hover {
   color: #ffd400;
 }
+
+/* =========================================
+   ANIMAÇÕES DE SCROLL — ENTRADA E SAÍDA
+========================================= */
+
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-reveal-section {
+    opacity: 0;
+    transform: translate3d(0, 70px, 0) scale(0.985);
+    filter: blur(8px);
+    transition:
+      opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform, filter;
+  }
+
+  .scroll-reveal-section.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
+  }
+
+  .scroll-reveal-section.is-after {
+    opacity: 0;
+    transform: translate3d(0, -55px, 0) scale(0.985);
+    filter: blur(6px);
+  }
+
+  .scroll-reveal-section.is-before {
+    opacity: 0;
+    transform: translate3d(0, 70px, 0) scale(0.985);
+    filter: blur(8px);
+  }
+
+  /* Animação interna dos cards e blocos */
+  .scroll-reveal-section .combo-card,
+  .scroll-reveal-section .why-item,
+  .scroll-reveal-section .countdown-content > *,
+  .scroll-reveal-section .footer-content > *,
+  .scroll-reveal-section .footer-bottom {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--reveal-delay, 0) * 80ms);
+  }
+
+  .scroll-reveal-section.is-visible .combo-card,
+  .scroll-reveal-section.is-visible .why-item,
+  .scroll-reveal-section.is-visible .countdown-content > *,
+  .scroll-reveal-section.is-visible .footer-content > *,
+  .scroll-reveal-section.is-visible .footer-bottom {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  /* Delays dos cards de combo */
+  .combo-card:nth-child(1) {
+    --reveal-delay: 1;
+  }
+
+  .combo-card:nth-child(2) {
+    --reveal-delay: 2;
+  }
+
+  .combo-card:nth-child(3) {
+    --reveal-delay: 3;
+  }
+
+  /* Delays dos itens da seção "Por que comprar conosco" */
+  .why-item:nth-child(1) {
+    --reveal-delay: 1;
+  }
+
+  .why-item:nth-child(3) {
+    --reveal-delay: 2;
+  }
+
+  .why-item:nth-child(5) {
+    --reveal-delay: 3;
+  }
+
+  .why-item:nth-child(7) {
+    --reveal-delay: 4;
+  }
+
+  .why-item:nth-child(9) {
+    --reveal-delay: 5;
+  }
+
+  /* Movimento suave das imagens principais */
+  .scroll-reveal-section .hero-product,
+  .scroll-reveal-section .blue-shirt-product,
+  .scroll-reveal-section .black-shirt-product {
+    opacity: 0;
+    transform: translate3d(40px, 0, 0) scale(0.98);
+    transition:
+      opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .scroll-reveal-section.is-visible .hero-product,
+  .scroll-reveal-section.is-visible .blue-shirt-product,
+  .scroll-reveal-section.is-visible .black-shirt-product {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@media (max-width: 900px) {
+  .scroll-reveal-section {
+    transform: translate3d(0, 38px, 0) scale(0.99);
+    filter: blur(4px);
+  }
+
+  .scroll-reveal-section.is-after {
+    transform: translate3d(0, -28px, 0) scale(0.99);
+    filter: blur(4px);
+  }
+
+  .scroll-reveal-section.is-before {
+    transform: translate3d(0, 38px, 0) scale(0.99);
+    filter: blur(4px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-reveal-section {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0) scale(0.995);
+    filter: blur(2px);
+    transition:
+      opacity 0.65s ease,
+      transform 0.75s ease,
+      filter 0.75s ease;
+  }
+
+  .scroll-reveal-section.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
+  }
+
+  .scroll-reveal-section.is-after {
+    opacity: 0.35;
+    transform: translate3d(0, -16px, 0) scale(0.995);
+    filter: blur(1px);
+  }
+
+  .scroll-reveal-section.is-before {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0) scale(0.995);
+    filter: blur(2px);
+  }
+
+  .scroll-reveal-section .combo-card,
+  .scroll-reveal-section .why-item,
+  .scroll-reveal-section .countdown-content > *,
+  .scroll-reveal-section .footer-content > *,
+  .scroll-reveal-section .footer-bottom {
+    transform: translate3d(0, 12px, 0);
+  }
+}
+
+@media (max-width: 900px) {
+  .scroll-reveal-section {
+    transform: translate3d(0, 16px, 0) scale(0.998);
+    filter: blur(1px);
+  }
+
+  .scroll-reveal-section.is-after {
+    transform: translate3d(0, -10px, 0) scale(0.998);
+    filter: blur(1px);
+  }
+
+  .scroll-reveal-section.is-before {
+    transform: translate3d(0, 16px, 0) scale(0.998);
+    filter: blur(1px);
+  }
+}
+
+/* =========================================
+   HERO — LOAD ANIMATION
+========================================= */
+
+/* =========================================
+   HERO — ENTRADA ITEM POR ITEM
+========================================= */
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-load-item {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+    filter: blur(3px);
+    transition:
+      opacity 0.7s ease,
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 0.8s ease;
+    will-change: opacity, transform, filter;
+  }
+
+  .hero-load-item.is-hero-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+
+  .site-header.hero-load-item {
+    transform: translate3d(0, -14px, 0);
+  }
+
+  .site-header.hero-load-item.is-hero-visible {
+    transform: translate3d(0, 0, 0);
+  }
+
+  .hero-logo-title.hero-load-item {
+    transform: translate3d(0, 18px, 0) scale(0.985);
+  }
+
+  .hero-logo-title.hero-load-item.is-hero-visible {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  .hero-benefit.hero-load-item {
+    transform: translate3d(0, 14px, 0) scale(0.98);
+  }
+
+  .hero-benefit.hero-load-item.is-hero-visible {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  .primary-button.hero-load-item {
+    transform: translate3d(0, 16px, 0) scale(0.97);
+  }
+
+  .primary-button.hero-load-item.is-hero-visible {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+.hero-shirt.hero-load-item {
+  opacity: 0;
+  transform: translate3d(38px, 20px, 0) scale(0.96);
+  filter: blur(4px) drop-shadow(0 30px 35px rgba(0, 0, 0, 0.32));
+  animation: none !important;
+}
+
+.hero-shirt.hero-load-item.is-hero-visible.is-floating {
+  animation: floatShirt 5s ease-in-out infinite !important;
+}
+
+  .hero-shirt.hero-load-item.is-hero-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0) drop-shadow(0 30px 35px rgba(0, 0, 0, 0.32));
+  }
+}
+
+@keyframes headerLoad {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroTitleLoad {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.96) rotate(-2deg);
+    filter: blur(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+    filter: blur(0);
+  }
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(3px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes heroButtonLoad {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes heroShirtLoad {
+  from {
+    opacity: 0;
+    transform: translateX(42px) translateY(20px) scale(0.94) rotate(2deg);
+    filter: blur(5px) drop-shadow(0 30px 35px rgba(0, 0, 0, 0.32));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1) rotate(0deg);
+    filter: blur(0) drop-shadow(0 30px 35px rgba(0, 0, 0, 0.32));
+  }
+}

@@ -61,3 +61,98 @@ if (countdown) {
   updateCountdown();
   setInterval(updateCountdown, 1000);
 }
+
+
+/* =========================================
+   SCROLL REVEAL — ENTRADA E SAÍDA DAS SEÇÕES
+========================================= */
+
+const sectionsToAnimate = document.querySelectorAll(
+  ".blue-shirt-section, .black-shirt-section, .why-section, .combos-section, .countdown-section, .site-footer"
+);
+
+let lastScrollY = window.scrollY;
+let scrollDirection = "down";
+
+window.addEventListener(
+  "scroll",
+  () => {
+    const currentScrollY = window.scrollY;
+
+    scrollDirection = currentScrollY > lastScrollY ? "down" : "up";
+    lastScrollY = currentScrollY;
+  },
+  { passive: true }
+);
+
+sectionsToAnimate.forEach((section, index) => {
+  section.classList.add("scroll-reveal-section");
+
+  if (index === 0) {
+    section.classList.add("is-visible");
+  }
+});
+
+const sectionObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      const section = entry.target;
+
+      if (entry.isIntersecting && entry.intersectionRatio > 0.18) {
+        section.classList.add("is-visible");
+        section.classList.remove("is-before", "is-after");
+      } else {
+        section.classList.remove("is-visible");
+
+        if (scrollDirection === "down") {
+          section.classList.add("is-after");
+          section.classList.remove("is-before");
+        } else {
+          section.classList.add("is-before");
+          section.classList.remove("is-after");
+        }
+      }
+    });
+  },
+  {
+    threshold: [0, 0.18, 0.35, 0.55],
+    rootMargin: "-12% 0px -12% 0px",
+  }
+);
+
+sectionsToAnimate.forEach((section) => {
+  sectionObserver.observe(section);
+});
+
+/* =========================================
+   HERO — LOAD STAGGER ANIMATION
+========================================= */
+
+const heroLoadItems = [
+  document.querySelector(".site-header"),
+  document.querySelector(".hero-logo-title"),
+  document.querySelector(".hero-text p"),
+  ...document.querySelectorAll(".hero-benefit"),
+  document.querySelector(".primary-button"),
+  document.querySelector(".hero-shirt"),
+].filter(Boolean);
+
+heroLoadItems.forEach((item) => {
+  item.classList.add("hero-load-item");
+});
+
+window.addEventListener("load", () => {
+  document.body.classList.add("site-loaded");
+
+ heroLoadItems.forEach((item, index) => {
+  setTimeout(() => {
+    item.classList.add("is-hero-visible");
+
+    if (item.classList.contains("hero-shirt")) {
+      setTimeout(() => {
+        item.classList.add("is-floating");
+      }, 900);
+    }
+  }, 120 * index);
+});
+});
