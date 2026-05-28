@@ -38,8 +38,13 @@ img {
   left: 0;
   width: 100%;
   z-index: 50;
-  background: rgba(248, 204, 0, 0.84);
-  backdrop-filter: blur(12px);
+
+  background-image: url("../assets/fundo-header.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+
+  backdrop-filter: none;
   border-bottom: 1px solid rgba(0, 68, 30, 0.15);
 }
 
