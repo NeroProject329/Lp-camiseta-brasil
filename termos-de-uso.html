@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Termos de Uso | Vaaai Brasil</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" 
+    rel="stylesheet"
+  >
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Montserrat", sans-serif;
+      background: #061b12;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .legal-page {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 15% 0%, rgba(255, 212, 0, 0.18), transparent 26%),
+        radial-gradient(circle at 90% 10%, rgba(0, 87, 184, 0.22), transparent 28%),
+        linear-gradient(180deg, #061b12 0%, #020c08 100%);
+    }
+
+    .legal-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(248, 204, 0, 0.96);
+    }
+
+    .legal-header-content {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .legal-logo img {
+      width: 118px;
+      display: block;
+    }
+
+    .back-home {
+      min-width: 150px;
+      height: 42px;
+      padding: 0 18px;
+      border-radius: 8px;
+      background: linear-gradient(180deg, #00963b, #005b24);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      box-shadow: 0 10px 20px rgba(0, 77, 29, 0.28);
+    }
+
+    .legal-hero {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 56px 0 28px;
+      text-align: center;
+    }
+
+    .legal-hero span {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 212, 0, 0.12);
+      border: 1px solid rgba(255, 212, 0, 0.32);
+      color: #ffd400;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 18px;
+    }
+
+    .legal-hero h1 {
+      color: #ffffff;
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: 0.95;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-style: italic;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+      text-shadow: 0 10px 24px rgba(0, 0, 0, 0.42);
+    }
+
+    .legal-hero p {
+      max-width: 760px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 15px;
+      line-height: 1.6;
+      font-weight: 700;
+    }
+
+    .legal-content {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 70px;
+    }
+
+    .legal-card {
+      background:
+        linear-gradient(180deg, rgba(0, 42, 24, 0.78), rgba(0, 16, 10, 0.94));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      padding: 34px;
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.36),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .legal-section {
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .legal-section:first-child {
+      padding-top: 0;
+    }
+
+    .legal-section:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .legal-section h2 {
+      color: #ffd400;
+      font-size: 18px;
+      line-height: 1.2;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
+    }
+
+    .legal-section p,
+    .legal-section li {
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 14px;
+      line-height: 1.72;
+      font-weight: 600;
+    }
+
+    .legal-section ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .legal-footer {
+      background: #020c08;
+      border-top: 3px solid #ffd400;
+      padding: 18px 0;
+      text-align: center;
+    }
+
+    .legal-footer p {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 700px) {
+      .legal-header-content {
+        height: 70px;
+      }
+
+      .legal-logo img {
+        width: 96px;
+      }
+
+      .back-home {
+        min-width: 120px;
+        height: 38px;
+        font-size: 10px;
+      }
+
+      .legal-hero {
+        padding: 42px 0 20px;
+      }
+
+      .legal-card {
+        padding: 24px 18px;
+        border-radius: 14px;
+      }
+
+      .legal-section h2 {
+        font-size: 16px;
+      }
+
+      .legal-section p,
+      .legal-section li {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="legal-page">
+
+    <header class="legal-header">
+      <div class="legal-header-content">
+        <a href="index.html" class="legal-logo">
+          <img src="assets/logo.png" alt="Vaaai Brasil">
+        </a>
+
+        <a href="index.html" class="back-home">Voltar ao site</a>
+      </div>
+    </header>
+
+    <section class="legal-hero">
+      <span>Regras de navegação e compra</span>
+      <h1>Termos de Uso</h1>
+      <p>
+        Estes Termos de Uso apresentam as condições gerais para acesso ao site,
+        navegação, compra de produtos e utilização dos serviços da Vaaai Brasil.
+      </p>
+    </section>
+
+    <main class="legal-content">
+      <div class="legal-card">
+
+        <section class="legal-section">
+          <h2>1. Aceitação dos termos</h2>
+          <p>
+            Ao acessar este site, navegar pelas páginas, entrar em contato ou realizar
+            uma compra, você declara que leu, compreendeu e concorda com estes Termos
+            de Uso. Caso não concorde com alguma condição, recomendamos que não utilize
+            o site.
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h2>2. Sobre o site</h2>
+          <p>
+            A Vaaai Brasil disponibiliza uma experiência digital voltada à apresentação
+            e venda de camisas e produtos relacionados ao universo esportivo brasileiro.
+            As informações, imagens, ofertas e condições comerciais podem ser atualizadas
+            a qualquer momento.
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h2>3. Produtos, imagens e disponibilidade</h2>
+          <p>
+            As imagens dos produtos são meramente ilustrativas e podem apresentar pequenas
+            variações de cor, textura, proporção ou detalhes conforme o dispositivo utilizado,
+            lote de fabricação ou disponibilidade em estoque.
+          </p>
+          <p>
+            A disponibilidade dos produtos está sujeita a confirmação no momento da compra.
+            Em caso de indisponibilidade após o pedido, o cliente poderá ser informado para
+            escolha de alternativa, aguardar reposição ou solicitar cancelamento.
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h2>4. Preços, promoções e condições de pagamento</h2>
+          <p>
+            Os preços, descontos, combos promocionais e condições de pagamento podem ser
+            alterados sem aviso prévio. Promoções possuem validade limitada e podem depender
+            de disponibilidade de estoque, regras de campanha ou quantidade mínima de produtos.
+          </p>
+          <p>
+            A confirmação do pedido pode depender da aprovação do pagamento pela plataforma
+            responsável pela transação.
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h2>5. Entrega</h2>
+          <p>
+            Os prazos de entrega podem variar conforme endereço informado, modalidade de envio,
+            disponibilidade do produto, períodos promocionais e operação logística. O cliente
+            é responsável por fornecer dados corretos e completos para entrega.
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h2>6. Trocas, devoluções e arrependimento</h2>
+          <p>
+            Solicitações de troca ou devolução devem ser realizadas pelos canais oficiais de
+            atendimento. O produto deve estar em condições adequadas, sem sinais de uso indevido,
+            com embalagem e acessórios quando aplicável.
+          </p>
+          <p>
+            O direito de arrependimento para compras online poderá ser exercido conforme previsto
+            na legislação brasileira aplicável.
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h2>7. Responsabilidades do usuário</h2>
+          <p>
+            Ao utilizar o site, o usuário se compromete a:
+          </p>
+          <ul>
+            <li>Fornecer informações verdadeiras e atualizadas;</li>
+            <li>Não utilizar o site para fins ilegais ou fraudulentos;</li>
+            <li>Não tentar acessar áreas restritas, sistemas ou dados de terceiros;</li>
+            <li>Não realizar ações que prejudiquem o funcionamento do site.</li>
+          </ul>
+        </section>
+
+        <section class="legal-section">
+          <h2>8. Propriedade intelectual</h2>
+          <p>
+            Textos, imagens, elementos visuais, identidade gráfica, layout, organização das páginas
+            e demais conteúdos do site são protegidos por direitos de propriedade intelectual.
+            É proibida a reprodução, cópia, distribuição ou uso comercial sem autorização.
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h2>9. Links externos e serviços de terceiros</h2>
+          <p>
+            O site pode conter links, integrações ou redirecionamentos para plataformas externas,
+            como meios de pagamento, atendimento, redes sociais ou serviços logísticos. A Vaaai Brasil
+            não controla as políticas e práticas desses terceiros, sendo recomendada a leitura dos
+            respectivos termos e políticas.
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h2>10. Limitação de responsabilidade</h2>
+          <p>
+            A Vaaai Brasil busca manter as informações do site atualizadas e o ambiente funcionando
+            corretamente. No entanto, não garantimos funcionamento ininterrupto, ausência total de
+            erros ou indisponibilidades temporárias decorrentes de manutenção, falhas técnicas,
+            serviços de terceiros ou eventos fora do nosso controle.
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h2>11. Alterações dos termos</h2>
+          <p>
+            Estes Termos de Uso podem ser modificados a qualquer momento para refletir melhorias
+            no site, mudanças comerciais, operacionais ou exigências legais. A versão mais recente
+            estará sempre disponível nesta página.
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h2>12. Contato</h2>
+          <p>
+            Em caso de dúvidas sobre estes Termos de Uso, pedidos, trocas, entregas ou atendimento,
+            entre em contato com a Vaaai Brasil pelos canais oficiais informados no site.
+          </p>
+        </section>
+
+      </div>
+    </main>
+
+    <footer class="legal-footer">
+      <p>© 2026 Vaaai Brasil. Todos os direitos reservados.</p>
+    </footer>
+
+  </div>
+</body>
+</html>
