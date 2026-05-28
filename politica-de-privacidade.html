@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de Privacidade - Vaaai Brasil</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Montserrat", sans-serif;
+      color: #ffffff;
+      background:
+        radial-gradient(circle at top left, rgba(255, 212, 0, 0.18), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(0, 87, 184, 0.22), transparent 34%),
+        linear-gradient(180deg, #061b12 0%, #020c08 100%);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .legal-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(248, 204, 0, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 68, 30, 0.18);
+    }
+
+    .legal-header-content {
+      width: min(1180px, calc(100% - 32px));
+      height: 74px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .legal-logo img {
+      width: 118px;
+    }
+
+    .legal-nav {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+
+    .legal-nav a {
+      color: #03140a;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      transition: 0.25s ease;
+    }
+
+    .legal-nav a:hover {
+      color: #0057b8;
+    }
+
+    .legal-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 92px 0 46px;
+      border-bottom: 1px solid rgba(255, 212, 0, 0.18);
+    }
+
+    .legal-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255, 212, 0, 0.2), transparent 24%),
+        radial-gradient(circle at 80% 30%, rgba(0, 87, 184, 0.28), transparent 26%);
+      pointer-events: none;
+    }
+
+    .legal-hero-inner {
+      position: relative;
+      z-index: 2;
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .legal-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(255, 212, 0, 0.12);
+      border: 1px solid rgba(255, 212, 0, 0.28);
+      color: #ffd400;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .legal-hero h1 {
+      max-width: 850px;
+      color: #ffffff;
+      font-size: clamp(38px, 5vw, 74px);
+      line-height: 0.95;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-style: italic;
+      letter-spacing: 2px;
+      text-shadow: 0 12px 24px rgba(0, 0, 0, 0.42);
+    }
+
+    .legal-hero p {
+      max-width: 720px;
+      margin-top: 20px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 16px;
+      line-height: 1.65;
+      font-weight: 700;
+    }
+
+    .legal-main {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 48px 0 70px;
+    }
+
+    .legal-card {
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(0, 27, 78, 0.54), rgba(0, 13, 43, 0.78));
+      border: 1px solid rgba(106, 191, 255, 0.34);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+        0 22px 55px rgba(0, 0, 0, 0.32);
+    }
+
+    .legal-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(255, 212, 0, 0.08), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(0, 87, 184, 0.12), transparent 30%);
+      pointer-events: none;
+    }
+
+    .legal-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .legal-content section + section {
+      margin-top: 30px;
+      padding-top: 26px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .legal-content h2 {
+      margin-bottom: 12px;
+      color: #ffd400;
+      font-size: 19px;
+      line-height: 1.15;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .legal-content p,
+    .legal-content li {
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 14px;
+      line-height: 1.75;
+      font-weight: 650;
+    }
+
+    .legal-content ul {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+
+    .legal-content li + li {
+      margin-top: 6px;
+    }
+
+    .legal-footer {
+      border-top: 3px solid #ffd400;
+      background: rgba(2, 12, 8, 0.96);
+    }
+
+    .legal-footer-inner {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 22px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .legal-footer-inner div {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .legal-footer-inner a {
+      transition: 0.25s ease;
+    }
+
+    .legal-footer-inner a:hover {
+      color: #ffd400;
+    }
+
+    @media (max-width: 760px) {
+      .legal-header-content {
+        height: auto;
+        padding: 16px 0;
+        flex-direction: column;
+      }
+
+      .legal-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+      }
+
+      .legal-hero {
+        padding: 54px 0 36px;
+        text-align: center;
+      }
+
+      .legal-card {
+        padding: 24px 18px;
+        border-radius: 18px;
+      }
+
+      .legal-footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .legal-footer-inner div {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="legal-header">
+    <div class="legal-header-content">
+      <a href="index.html" class="legal-logo">
+        <img src="assets/logo.png" alt="Vaaai Brasil">
+      </a>
+
+      <nav class="legal-nav">
+        <a href="index.html#inicio">Início</a>
+        <a href="index.html#camisas">Camisas</a>
+        <a href="index.html#combos">Combos</a>
+        <a href="termos-de-uso.html">Termos de uso</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="legal-hero">
+      <div class="legal-hero-inner">
+        <span class="legal-eyebrow">Proteção de dados</span>
+        <h1>Política de Privacidade</h1>
+        <p>
+          Esta página explica como a Vaaai Brasil pode coletar, utilizar, proteger e tratar informações fornecidas pelos usuários durante a navegação, contato e compra em nossa loja.
+        </p>
+      </div>
+    </section>
+
+    <section class="legal-main">
+      <article class="legal-card">
+        <div class="legal-content">
+          <section>
+            <h2>1. Informações coletadas</h2>
+            <p>
+              Podemos coletar informações fornecidas voluntariamente pelo usuário, como nome, telefone, e-mail, endereço de entrega e dados necessários para contato, atendimento, compra, entrega e suporte.
+            </p>
+          </section>
+
+          <section>
+            <h2>2. Uso das informações</h2>
+            <p>As informações coletadas podem ser utilizadas para:</p>
+            <ul>
+              <li>Processar pedidos e solicitações realizadas no site;</li>
+              <li>Realizar atendimento, suporte e comunicação com o cliente;</li>
+              <li>Enviar informações sobre compra, entrega, promoções e novidades;</li>
+              <li>Melhorar a experiência de navegação e funcionamento da loja;</li>
+              <li>Cumprir obrigações legais, regulatórias ou solicitações de autoridades competentes.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>3. Compartilhamento de dados</h2>
+            <p>
+              A Vaaai Brasil não vende dados pessoais dos usuários. As informações podem ser compartilhadas apenas quando necessário para operação da loja, como com serviços de pagamento, entrega, suporte, hospedagem, análise de navegação ou quando exigido por lei.
+            </p>
+          </section>
+
+          <section>
+            <h2>4. Cookies e tecnologias semelhantes</h2>
+            <p>
+              O site pode utilizar cookies e tecnologias semelhantes para melhorar a navegação, lembrar preferências, analisar desempenho e oferecer uma experiência mais personalizada. O usuário pode ajustar as permissões de cookies diretamente nas configurações do navegador.
+            </p>
+          </section>
+
+          <section>
+            <h2>5. Segurança das informações</h2>
+            <p>
+              Adotamos medidas razoáveis de segurança para proteger as informações dos usuários contra acesso não autorizado, uso indevido, alteração, divulgação ou destruição. Apesar disso, nenhum sistema digital é totalmente imune a riscos.
+            </p>
+          </section>
+
+          <section>
+            <h2>6. Direitos do usuário</h2>
+            <p>
+              O usuário pode solicitar informações sobre seus dados, correção, atualização ou exclusão, quando aplicável. Para exercer esses direitos, entre em contato pelos canais oficiais de atendimento da loja.
+            </p>
+          </section>
+
+          <section>
+            <h2>7. Alterações nesta política</h2>
+            <p>
+              Esta Política de Privacidade pode ser atualizada a qualquer momento para refletir mudanças na loja, em processos internos ou na legislação. Recomendamos a consulta periódica desta página.
+            </p>
+          </section>
+
+          <section>
+            <h2>8. Contato</h2>
+            <p>
+              Em caso de dúvidas sobre esta Política de Privacidade ou sobre o tratamento de dados pessoais, entre em contato pelos canais oficiais de atendimento disponíveis no site.
+            </p>
+          </section>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="legal-footer">
+    <div class="legal-footer-inner">
+      <span>© 2026 Vaaai Brasil. Todos os direitos reservados.</span>
+      <div>
+        <a href="index.html">Voltar para loja</a>
+        <a href="termos-de-uso.html">Termos de uso</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
