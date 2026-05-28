@@ -2566,3 +2566,189 @@ img {
     filter: blur(0) drop-shadow(0 30px 35px rgba(0, 0, 0, 0.32));
   }
 }
+
+
+/* =========================================
+   NAVBAR — ENTRADA REAL NO LOAD
+========================================= */
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-header {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+    filter: blur(4px);
+    transition:
+      opacity 0.75s ease,
+      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 0.9s ease;
+    will-change: opacity, transform, filter;
+  }
+
+  .site-header.is-hero-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+}
+
+
+/* HERO — entrada suave da área da camiseta */
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-product.hero-load-item {
+    opacity: 0;
+    transform: translate3d(34px, 18px, 0) scale(0.985);
+    filter: blur(3px);
+    transition:
+      opacity 0.95s ease,
+      transform 1.15s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 1.1s ease;
+    will-change: opacity, transform, filter;
+  }
+
+  .hero-product.hero-load-item.is-hero-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
+  }
+
+  .hero-shirt {
+    animation: floatShirt 5s ease-in-out infinite;
+  }
+}
+
+/* =========================================
+   CAMISETA AZUL — EFEITO PORTA DE CORRER
+========================================= */
+@media (prefers-reduced-motion: no-preference) {
+  .blue-reveal-item {
+    opacity: 0;
+    transform: translate3d(55vw, 0, 0) scale(0.995) !important;
+    clip-path: inset(0 0 0 100%);
+    filter: blur(1.5px);
+    transition:
+      opacity 0.85s ease,
+      transform 1.25s cubic-bezier(0.16, 1, 0.3, 1),
+      clip-path 1.25s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 1.1s ease;
+    transition-delay: calc(var(--blue-delay, 0) * 105ms);
+    will-change: opacity, transform, clip-path, filter;
+  }
+
+  .blue-shirt-section.is-blue-visible .blue-reveal-item {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1) !important;
+    clip-path: inset(0 0 0 0);
+    filter: blur(0);
+  }
+
+  .blue-shirt-section:not(.is-blue-visible) .blue-reveal-item {
+    opacity: 0;
+    transform: translate3d(55vw, 0, 0) scale(0.995) !important;
+    clip-path: inset(0 0 0 100%);
+    filter: blur(1.5px);
+  }
+
+  .blue-shirt-img.blue-reveal-item {
+    transform: translate3d(65vw, 0, 0) scale(0.985) !important;
+    filter: blur(2px) drop-shadow(0 28px 32px rgba(0, 0, 0, 0.48));
+  }
+
+  .blue-shirt-section.is-blue-visible .blue-shirt-img.blue-reveal-item {
+    transform: translate3d(0, 0, 0) scale(1) !important;
+    filter: blur(0) drop-shadow(0 28px 32px rgba(0, 0, 0, 0.48));
+  }
+
+  .blue-button.blue-reveal-item {
+    transform: translate3d(48vw, 0, 0) scale(0.985) !important;
+  }
+
+  .blue-shirt-section.is-blue-visible .blue-button.blue-reveal-item {
+    transform: translate3d(0, 0, 0) scale(1) !important;
+  }
+}
+
+
+/* =========================================
+   CAMISETA PRETA — EFEITO PORTA DE CORRER
+   Da esquerda para a direita
+========================================= */
+
+@media (prefers-reduced-motion: no-preference) {
+  .black-shirt-section {
+    overflow: hidden;
+  }
+
+  .black-reveal-item {
+    opacity: 0;
+    transform: translate3d(-55vw, 0, 0) scale(0.995) !important;
+    clip-path: inset(0 100% 0 0);
+    filter: blur(1.5px);
+    transition:
+      opacity 0.85s ease,
+      transform 1.25s cubic-bezier(0.16, 1, 0.3, 1),
+      clip-path 1.25s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 1.1s ease;
+    transition-delay: calc(var(--black-delay, 0) * 105ms);
+    will-change: opacity, transform, clip-path, filter;
+  }
+
+  .black-shirt-section.is-black-visible .black-reveal-item {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1) !important;
+    clip-path: inset(0 0 0 0);
+    filter: blur(0);
+  }
+
+  .black-shirt-section:not(.is-black-visible) .black-reveal-item {
+    opacity: 0;
+    transform: translate3d(-55vw, 0, 0) scale(0.995) !important;
+    clip-path: inset(0 100% 0 0);
+    filter: blur(1.5px);
+  }
+
+  .black-shirt-img.black-reveal-item {
+    transform: translate3d(-65vw, 0, 0) scale(0.985) !important;
+    filter: blur(2px) drop-shadow(0 28px 34px rgba(0, 0, 0, 0.55));
+  }
+
+  .black-shirt-section.is-black-visible .black-shirt-img.black-reveal-item {
+    transform: translate3d(0, 0, 0) scale(1) !important;
+    filter: blur(0) drop-shadow(0 28px 34px rgba(0, 0, 0, 0.55));
+  }
+
+  .black-button.black-reveal-item {
+    transform: translate3d(-48vw, 0, 0) scale(0.985) !important;
+  }
+
+  .black-shirt-section.is-black-visible .black-button.black-reveal-item {
+    transform: translate3d(0, 0, 0) scale(1) !important;
+  }
+}
+
+
+/* =========================================
+   HERO — SAÍDA APÓS O LOAD
+   Só funciona depois da animação inicial
+   Não afeta navbar
+========================================= */
+
+@media (prefers-reduced-motion: no-preference) {
+  body.hero-load-complete .hero-section.is-hero-exiting .hero-logo-title,
+  body.hero-load-complete .hero-section.is-hero-exiting .hero-text p,
+  body.hero-load-complete .hero-section.is-hero-exiting .hero-benefit,
+  body.hero-load-complete .hero-section.is-hero-exiting .primary-button,
+  body.hero-load-complete .hero-section.is-hero-exiting .hero-product {
+    opacity: 0 !important;
+    transform: translate3d(0, -18px, 0) scale(0.99) !important;
+    filter: blur(2px) !important;
+    transition:
+      opacity 0.65s ease,
+      transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 0.75s ease;
+  }
+
+  body.hero-load-complete .hero-section.is-hero-exiting .hero-product {
+    transform: translate3d(28px, -14px, 0) scale(0.99) !important;
+  }
+}

@@ -68,7 +68,7 @@ if (countdown) {
 ========================================= */
 
 const sectionsToAnimate = document.querySelectorAll(
-  ".blue-shirt-section, .black-shirt-section, .why-section, .combos-section, .countdown-section, .site-footer"
+  ".why-section, .combos-section, .countdown-section, .site-footer"
 );
 
 let lastScrollY = window.scrollY;
@@ -128,13 +128,17 @@ sectionsToAnimate.forEach((section) => {
    HERO — LOAD STAGGER ANIMATION
 ========================================= */
 
+/* =========================================
+   HERO — LOAD STAGGER ANIMATION
+========================================= */
+
 const heroLoadItems = [
   document.querySelector(".site-header"),
   document.querySelector(".hero-logo-title"),
   document.querySelector(".hero-text p"),
   ...document.querySelectorAll(".hero-benefit"),
   document.querySelector(".primary-button"),
-  document.querySelector(".hero-shirt"),
+  document.querySelector(".hero-product"),
 ].filter(Boolean);
 
 heroLoadItems.forEach((item) => {
@@ -144,15 +148,139 @@ heroLoadItems.forEach((item) => {
 window.addEventListener("load", () => {
   document.body.classList.add("site-loaded");
 
- heroLoadItems.forEach((item, index) => {
-  setTimeout(() => {
-    item.classList.add("is-hero-visible");
+  heroLoadItems.forEach((item, index) => {
+    const delay = 220 + 135 * index;
 
-    if (item.classList.contains("hero-shirt")) {
-      setTimeout(() => {
-        item.classList.add("is-floating");
-      }, 900);
+    setTimeout(() => {
+      item.classList.add("is-hero-visible");
+    }, delay);
+  });
+
+  const heroLoadTotalTime = 220 + 135 * heroLoadItems.length + 1000;
+
+  setTimeout(() => {
+    document.body.classList.add("hero-load-complete");
+  }, heroLoadTotalTime);
+});
+
+/* =========================================
+   CAMISETA AZUL — STAGGER PORTA DE CORRER
+========================================= */
+
+const blueSection = document.querySelector(".blue-shirt-section");
+
+if (blueSection) {
+  const blueRevealItems = [
+    blueSection.querySelector(".blue-shirt-img"),
+    blueSection.querySelector(".blue-stars"),
+    blueSection.querySelector(".blue-shirt-text h2"),
+    blueSection.querySelector(".blue-edition"),
+    blueSection.querySelector(".blue-shirt-text p"),
+    ...blueSection.querySelectorAll(".blue-shirt-feature"),
+    blueSection.querySelector(".blue-button"),
+  ].filter(Boolean);
+
+  blueRevealItems.forEach((item, index) => {
+    item.classList.add("blue-reveal-item");
+    item.style.setProperty("--blue-delay", index);
+  });
+
+  const blueObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.28) {
+          blueSection.classList.add("is-blue-visible");
+        } else {
+          blueSection.classList.remove("is-blue-visible");
+        }
+      });
+    },
+    {
+      threshold: [0, 0.28, 0.45],
+      rootMargin: "-8% 0px -12% 0px",
     }
-  }, 120 * index);
-});
-});
+  );
+
+  blueObserver.observe(blueSection);
+}
+
+
+/* =========================================
+   CAMISETA PRETA — STAGGER PORTA DE CORRER
+   Da esquerda para a direita
+========================================= */
+
+const blackSection = document.querySelector(".black-shirt-section");
+
+if (blackSection) {
+  const blackRevealItems = [
+    blackSection.querySelector(".black-shirt-img"),
+    blackSection.querySelector(".black-shirt-text h2"),
+    blackSection.querySelector(".black-stars"),
+    blackSection.querySelector(".black-shirt-text p"),
+    ...blackSection.querySelectorAll(".black-benefits > div"),
+    blackSection.querySelector(".black-button"),
+  ].filter(Boolean);
+
+  blackRevealItems.forEach((item, index) => {
+    item.classList.add("black-reveal-item");
+    item.style.setProperty("--black-delay", index);
+  });
+
+  const blackObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.28) {
+          blackSection.classList.add("is-black-visible");
+        } else {
+          blackSection.classList.remove("is-black-visible");
+        }
+      });
+    },
+    {
+      threshold: [0, 0.28, 0.45],
+      rootMargin: "-8% 0px -12% 0px",
+    }
+  );
+
+  blackObserver.observe(blackSection);
+}
+
+/* =========================================
+   HERO — SUMIR AO DESCER E VOLTAR AO SUBIR
+   Só depois do load completo
+========================================= */
+
+const heroSection = document.querySelector(".hero-section");
+
+if (heroSection) {
+  let heroExitTicking = false;
+
+  function updateHeroExit() {
+    if (!document.body.classList.contains("hero-load-complete")) {
+      heroExitTicking = false;
+      return;
+    }
+
+    const shouldHideHero = window.scrollY > 140;
+
+    if (shouldHideHero) {
+      heroSection.classList.add("is-hero-exiting");
+    } else {
+      heroSection.classList.remove("is-hero-exiting");
+    }
+
+    heroExitTicking = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!heroExitTicking) {
+        window.requestAnimationFrame(updateHeroExit);
+        heroExitTicking = true;
+      }
+    },
+    { passive: true }
+  );
+}
