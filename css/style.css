@@ -623,8 +623,8 @@ img {
     margin: 0 0 24px 0;
     padding: 12px 24px;
 
-    background: rgba(255, 219, 63, 0.62);
-    border: 1px solid rgba(255, 236, 120, 0.34);
+    background: rgba(255, 220, 63, 0.192);
+    border: 1px solid rgba(255, 237, 120, 0.123);
     border-radius: 2px;
 
     box-shadow:
@@ -657,8 +657,8 @@ img {
   }
 
   .hero-benefit img {
-    width: 38px;
-    height: 38px;
+    width: 48px;
+    height: 48px;
     object-fit: contain;
     display: block;
     flex: 0 0 38px;
@@ -684,6 +684,8 @@ img {
     white-space: nowrap;
   }
 }
+
+
 
 /* Camisa Azul */
 
