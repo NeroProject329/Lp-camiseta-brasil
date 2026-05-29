@@ -2752,3 +2752,336 @@ img {
     transform: translate3d(28px, -14px, 0) scale(0.99) !important;
   }
 }
+
+
+/* =========================================================
+   PERSONALIZAÇÃO NA CAMISETA
+========================================================= */
+
+.product-gallery {
+  position: relative;
+}
+
+.shirt-preview {
+  position: absolute;
+  left: 50%;
+  top: 32%;
+  transform: translateX(-50%);
+  width: 160px;
+  min-height: 90px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  text-align: center;
+  z-index: 5;
+  opacity: 0.82;
+}
+
+.shirt-preview.active {
+  display: flex;
+}
+
+.shirt-preview span {
+  color: #123f18;
+  font-size: 17px;
+  line-height: 1;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.shirt-preview strong {
+  display: block;
+  margin-top: 6px;
+  color: #123f18;
+  font-size: 42px;
+  line-height: 0.9;
+  font-weight: 900;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* =========================================================
+   CARRINHO LATERAL
+========================================================= */
+
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 190;
+  background: rgba(0, 0, 0, 0.48);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.25s ease;
+}
+
+.cart-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 200;
+  width: min(420px, 100%);
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: -18px 0 50px rgba(0, 0, 0, 0.18);
+  transform: translateX(105%);
+  transition: 0.28s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-drawer.active {
+  transform: translateX(0);
+}
+
+.cart-drawer-header {
+  height: 78px;
+  padding: 0 20px;
+  border-bottom: 1px solid #eeeeee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cart-drawer-header strong {
+  display: block;
+  color: #111111;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.cart-drawer-header span {
+  display: block;
+  margin-top: 3px;
+  color: #777777;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.cart-drawer-header button {
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 999px;
+  background: #f3f3f3;
+  color: #111111;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 74px 1fr;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.cart-item-image {
+  width: 74px;
+  height: 86px;
+  border: 1px solid #eeeeee;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.cart-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cart-item-info h3 {
+  color: #111111;
+  font-size: 12px;
+  line-height: 1.25;
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+
+.cart-item-meta {
+  color: #666666;
+  font-size: 11px;
+  line-height: 1.5;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.cart-item-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cart-item-price {
+  color: #111111;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.cart-item-qty {
+  display: flex;
+  align-items: center;
+  border: 1px solid #dddddd;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.cart-item-qty button {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: #f7f7f7;
+  color: #111111;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.cart-item-qty span {
+  width: 28px;
+  text-align: center;
+  color: #111111;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.cart-remove {
+  margin-top: 8px;
+  border: 0;
+  background: transparent;
+  color: #d12b2b;
+  font-size: 11px;
+  font-weight: 900;
+  text-decoration: underline;
+}
+
+.cart-empty {
+  display: none;
+  padding: 28px 20px;
+  color: #777777;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.cart-empty.active {
+  display: block;
+}
+
+.cart-summary {
+  padding: 16px;
+  border-top: 1px solid #eeeeee;
+  background: #ffffff;
+}
+
+.cart-summary > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.cart-summary span {
+  color: #555555;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.cart-summary strong {
+  color: #111111;
+  font-size: 21px;
+  font-weight: 900;
+}
+
+.cart-checkout {
+  width: 100%;
+  height: 46px;
+  border: 0;
+  border-radius: 10px;
+  background: #18a84f;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.cart-clear {
+  width: 100%;
+  height: 40px;
+  margin-top: 8px;
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #111111;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.cart-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 92px;
+  z-index: 300;
+  transform: translateX(-50%) translateY(20px);
+  background: #111111;
+  color: #ffffff;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.25s ease;
+}
+
+.cart-toast.active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 768px) {
+  .shirt-preview {
+    top: 31%;
+    width: 115px;
+    min-height: 70px;
+  }
+
+  .shirt-preview span {
+    font-size: 12px;
+  }
+
+  .shirt-preview strong {
+    font-size: 30px;
+  }
+
+  .cart-drawer {
+    width: 100%;
+  }
+
+  .cart-drawer-header {
+    height: 70px;
+  }
+
+  .cart-toast {
+    bottom: 100px;
+    width: max-content;
+    max-width: calc(100% - 32px);
+  }
+}

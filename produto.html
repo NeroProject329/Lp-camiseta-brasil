@@ -50,10 +50,10 @@
           <span>Acessar</span>
         </div>
 
-        <button class="product-cart" type="button" aria-label="Carrinho">
-          <img src="assets/icon-hero/carrinho.png" alt="">
-          <span>0</span>
-        </button>
+        <button class="product-cart js-open-cart" id="openCartButton" type="button" aria-label="Abrir carrinho">
+  <img src="assets/icon-hero/carrinho.png" alt="">
+  <span class="cart-count">0</span>
+</button>
       </div>
     </div>
 
@@ -122,18 +122,17 @@
 
           <div class="custom-fields">
             <label>
-              <span>Nome</span>
-              <input type="text" placeholder="Nome na camisa">
-              <small>+R$ 25,00</small>
+                <span>Nome</span>
+                <input id="customName" type="text" placeholder="Nome na camisa" maxlength="12">
+                <small>+R$ 25,00</small>
             </label>
 
             <label>
-              <span>Número</span>
-              <input type="text" placeholder="Número na camisa">
-              <small>+R$ 25,00</small>
+                <span>Número</span>
+                <input id="customNumber" type="text" placeholder="Número na camisa" maxlength="2" inputmode="numeric">
+                <small>+R$ 25,00</small>
             </label>
           </div>
-
           <div class="price-box">
             <span class="old-price" id="oldPrice"></span>
             <strong id="productPrice"></strong>
@@ -148,7 +147,7 @@
               <button type="button" id="plusQty">+</button>
             </div>
 
-            <button class="buy-button" type="button">Comprar</button>
+            <button class="buy-button" id="addToCartButton" type="button">Comprar</button>
           </div>
 
           <a href="#" class="whatsapp-button" id="whatsappButton" target="_blank">
@@ -320,8 +319,52 @@
       </div>
     </div>
 
-    <button type="button">Comprar</button>
+    <button id="stickyAddToCart" type="button">Comprar</button>
   </div>
+
+
+
+
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-header">
+    <button type="button" id="closeCartButton" class="cart-close-top" aria-label="Fechar carrinho">
+      <span>‹</span>
+      <strong>Fechar</strong>
+    </button>
+
+    <h3>Carrinho de Compras</h3>
+
+    <div class="cart-header-spacer"></div>
+  </div>
+
+  <div class="cart-items" id="cartItems"></div>
+
+  <div class="cart-empty" id="cartEmpty">
+    Seu carrinho está vazio.
+  </div>
+
+  <div class="cart-summary">
+    <div class="cart-summary-total">
+      <span>Total:</span>
+      <strong id="cartSubtotal">R$ 0,00</strong>
+    </div>
+
+    <button class="cart-checkout" id="cartWhatsappButton" type="button">
+      FINALIZAR COMPRA
+    </button>
+
+    <button class="cart-continue" id="continueShoppingButton" type="button">
+      CONTINUAR COMPRANDO
+    </button>
+
+    <button class="cart-clear" id="clearCartButton" type="button" style="display: none;">
+      Limpar carrinho
+    </button>
+  </div>
+</aside>
+
 
   <script src="js/script-produto.js"></script>
 </body>
