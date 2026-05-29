@@ -603,7 +603,7 @@ function setupCartEvents() {
   });
 
   whatsappButton?.addEventListener("click", () => {
-    window.open(createWhatsAppLinkFromCart(), "_blank");
+      window.location.href = "finalizar-compra.html";
   });
 }
 
@@ -728,6 +728,8 @@ async function loadProducts() {
   }
 }
 
+
+
 setupGalleryArrows();
 setupQuantity();
 setupTabs();
@@ -736,3 +738,252 @@ setupCartEvents();
 updateCartBadges();
 renderCart();
 loadProducts();
+
+/* =========================================================
+   FINALIZAR COMPRA
+========================================================= */
+
+const CHECKOUT_PRODUCT_JSON = "data/produtos.json";
+const CHECKOUT_CART_KEY = "vaaaiBrasilCart";
+
+function checkoutGetEl(id) {
+  return document.getElementById(id);
+}
+
+function checkoutGetCart() {
+  try {
+    return JSON.parse(localStorage.getItem(CHECKOUT_CART_KEY)) || [];
+  } catch {
+    return [];
+  }
+}
+
+function checkoutSaveCart(cart) {
+  localStorage.setItem(CHECKOUT_CART_KEY, JSON.stringify(cart));
+  checkoutRenderCart();
+}
+
+function checkoutFormatMoney(cents) {
+  return (Number(cents) / 100).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
+}
+
+function checkoutGetSubtotal(cart) {
+  return cart.reduce((total, item) => {
+    return total + item.unitPriceCents * item.qty;
+  }, 0);
+}
+
+function checkoutRenderCart() {
+  const list = checkoutGetEl("checkoutCartList");
+  const empty = checkoutGetEl("checkoutEmpty");
+  const subtotalEl = checkoutGetEl("checkoutSubtotal");
+  const totalEl = checkoutGetEl("checkoutTotal");
+  const installmentsEl = checkoutGetEl("checkoutInstallments");
+
+  if (!list || !empty || !subtotalEl || !totalEl) return;
+
+  const cart = checkoutGetCart();
+  const subtotal = checkoutGetSubtotal(cart);
+
+  subtotalEl.textContent = checkoutFormatMoney(subtotal);
+  totalEl.textContent = checkoutFormatMoney(subtotal);
+
+  if (installmentsEl) {
+    const boleto = Math.round(subtotal * 0.9);
+    const oneCard = subtotal;
+    const twelve = Math.round(subtotal / 12);
+
+    installmentsEl.innerHTML = `
+      ${checkoutFormatMoney(boleto)} no boleto com desconto<br>
+      ou 5x sem juros de ${checkoutFormatMoney(Math.round(subtotal / 5))} no cartão de crédito<br>
+      ou 12x de ${checkoutFormatMoney(twelve)} no cartão de crédito
+    `;
+  }
+
+  if (!cart.length) {
+    list.innerHTML = "";
+    empty.classList.add("active");
+    return;
+  }
+
+  empty.classList.remove("active");
+
+  list.innerHTML = cart.map((item) => {
+    return `
+      <article class="checkout-cart-item">
+        <div class="checkout-cart-image">
+          <img src="${item.image}" alt="${item.shortName}">
+        </div>
+
+        <div class="checkout-cart-info">
+          <h3>${item.name || item.shortName}</h3>
+          <p>Tamanho ${item.size}</p>
+          ${item.customName ? `<p>Nome: ${item.customName}</p>` : ""}
+          ${item.customNumber ? `<p>Número: ${item.customNumber}</p>` : ""}
+        </div>
+
+        <div class="checkout-cart-qty">
+          <button type="button" data-checkout-action="decrease" data-checkout-id="${item.id}">−</button>
+          <span>${item.qty}</span>
+          <button type="button" data-checkout-action="increase" data-checkout-id="${item.id}">+</button>
+        </div>
+
+        <strong class="checkout-cart-price">
+          ${checkoutFormatMoney(item.unitPriceCents * item.qty)}
+        </strong>
+
+        <button class="checkout-cart-remove" type="button" data-checkout-action="remove" data-checkout-id="${item.id}">
+          🗑
+        </button>
+      </article>
+    `;
+  }).join("");
+}
+
+function checkoutChangeQty(itemId, action) {
+  const cart = checkoutGetCart();
+  const item = cart.find((cartItem) => cartItem.id === itemId);
+
+  if (!item) return;
+
+  if (action === "increase") item.qty += 1;
+  if (action === "decrease") item.qty -= 1;
+
+  checkoutSaveCart(cart.filter((cartItem) => cartItem.qty > 0));
+}
+
+function checkoutRemoveItem(itemId) {
+  const cart = checkoutGetCart().filter((item) => item.id !== itemId);
+  checkoutSaveCart(cart);
+}
+
+function checkoutCreateWhatsAppLink() {
+  const cart = checkoutGetCart();
+
+  const lines = cart.map((item, index) => {
+    return [
+      `${index + 1}. ${item.shortName}`,
+      `Tamanho: ${item.size}`,
+      item.customName ? `Nome: ${item.customName}` : "",
+      item.customNumber ? `Número: ${item.customNumber}` : "",
+      `Qtd: ${item.qty}`,
+      `Total: ${checkoutFormatMoney(item.unitPriceCents * item.qty)}`
+    ].filter(Boolean).join("\n");
+  });
+
+  const subtotal = checkoutGetSubtotal(cart);
+  const cep = checkoutGetEl("checkoutCep")?.value || "";
+
+  const message = [
+    "Olá! Quero finalizar minha compra:",
+    "",
+    ...lines,
+    "",
+    cep ? `CEP: ${cep}` : "",
+    `Total: ${checkoutFormatMoney(subtotal)}`
+  ].filter(Boolean).join("\n");
+
+  return `https://wa.me/5500000000000?text=${encodeURIComponent(message)}`;
+}
+
+async function checkoutRenderRecommendations() {
+  const wrapper = checkoutGetEl("checkoutProducts");
+  const dots = checkoutGetEl("checkoutDots");
+
+  if (!wrapper) return;
+
+  try {
+    const response = await fetch(CHECKOUT_PRODUCT_JSON);
+    const products = await response.json();
+
+    const list = Object.values(products).slice(0, 4);
+
+    wrapper.innerHTML = list.map((product) => {
+      return `
+        <article class="checkout-product-card">
+          <a class="checkout-product-image" href="produto.html?produto=${product.id}">
+            <img src="${product.mainImage}" alt="${product.shortName}">
+          </a>
+
+          <div class="checkout-product-info">
+            <h3>${product.name}</h3>
+
+            <span class="checkout-product-old">${product.oldPrice}</span>
+            <strong>${product.price}</strong>
+
+            <a class="checkout-product-button" href="produto.html?produto=${product.id}">
+              Ver produto
+            </a>
+          </div>
+        </article>
+      `;
+    }).join("");
+
+    if (dots) {
+      dots.innerHTML = list.map((_, index) => {
+        return `<span class="${index === 0 ? "active" : ""}"></span>`;
+      }).join("");
+    }
+  } catch (error) {
+    console.warn("Não foi possível carregar recomendações:", error);
+  }
+}
+
+function checkoutSetupEvents() {
+  const list = checkoutGetEl("checkoutCartList");
+
+  list?.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-checkout-action]");
+    if (!button) return;
+
+    const action = button.dataset.checkoutAction;
+    const itemId = button.dataset.checkoutId;
+
+    if (action === "increase" || action === "decrease") {
+      checkoutChangeQty(itemId, action);
+    }
+
+    if (action === "remove") {
+      checkoutRemoveItem(itemId);
+    }
+  });
+
+  checkoutGetEl("checkoutCepButton")?.addEventListener("click", () => {
+    const cep = checkoutGetEl("checkoutCep")?.value || "";
+    const result = checkoutGetEl("checkoutShippingResult");
+
+    if (!result) return;
+
+    if (cep.trim().length < 8) {
+      result.textContent = "Digite um CEP válido para consultar o frete.";
+      return;
+    }
+
+    result.textContent = "Frete grátis disponível para sua região.";
+  });
+
+  checkoutGetEl("checkoutContinueTop")?.addEventListener("click", () => {
+    window.open(checkoutCreateWhatsAppLink(), "_blank");
+  });
+
+  checkoutGetEl("checkoutContinueBottom")?.addEventListener("click", () => {
+    window.open(checkoutCreateWhatsAppLink(), "_blank");
+  });
+
+  checkoutGetEl("checkoutScrollTop")?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+function checkoutInit() {
+  if (!document.body.classList.contains("checkout-page")) return;
+
+  checkoutRenderCart();
+  checkoutRenderRecommendations();
+  checkoutSetupEvents();
+}
+
+checkoutInit();

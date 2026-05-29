@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Finalizar Compra | Vaaai Brasil</title>
+
+  <link rel="stylesheet" href="css/style-produto.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+</head>
+
+<body class="checkout-page">
+
+  <header class="checkout-header">
+    <div class="checkout-container checkout-header-inner">
+      <a href="index.html" class="checkout-logo">
+        <img src="assets/logo.png" alt="Vaaai Brasil">
+      </a>
+
+      <div class="checkout-secure">
+        <span>SEUS DADOS<br>100% SEGUROS</span>
+        <strong>🔒</strong>
+      </div>
+    </div>
+  </header>
+
+  <main class="checkout-main">
+    <div class="checkout-container">
+
+      <div class="checkout-actions-top">
+        <a href="produto.html" class="checkout-back">
+          ‹ Escolher mais produtos
+        </a>
+
+        <button class="checkout-continue-top" id="checkoutContinueTop" type="button">
+          Continuar
+        </button>
+      </div>
+
+      <section class="checkout-card checkout-cart-card">
+        <h1>Meu carrinho</h1>
+
+        <div class="checkout-cart-list" id="checkoutCartList"></div>
+
+        <div class="checkout-empty" id="checkoutEmpty">
+          Seu carrinho está vazio.
+          <a href="index.html">Voltar para a loja</a>
+        </div>
+      </section>
+
+      <div class="checkout-grid">
+        <section class="checkout-card checkout-shipping-card">
+          <h2>Frete</h2>
+
+          <div class="checkout-divider"></div>
+
+          <div class="checkout-cep-row">
+            <input id="checkoutCep" type="text" placeholder="Digite seu CEP" inputmode="numeric">
+            <button id="checkoutCepButton" type="button">Buscar</button>
+          </div>
+
+          <button class="checkout-link-button" type="button">
+            Não sei meu CEP
+          </button>
+
+          <p class="checkout-shipping-result" id="checkoutShippingResult"></p>
+        </section>
+
+        <section class="checkout-card checkout-summary-card">
+          <h2>Resumo do pedido</h2>
+
+          <div class="checkout-divider"></div>
+
+          <div class="checkout-summary-line">
+            <span>Subtotal</span>
+            <strong id="checkoutSubtotal">R$ 0,00</strong>
+          </div>
+
+          <div class="checkout-divider"></div>
+
+          <div class="checkout-summary-total">
+            <span>Total do pedido</span>
+            <strong id="checkoutTotal">R$ 0,00</strong>
+          </div>
+
+          <p id="checkoutInstallments">
+            ou 5x sem juros no cartão de crédito
+          </p>
+        </section>
+      </div>
+
+      <section class="checkout-card checkout-recommendations">
+        <h2>Recomendamos para você</h2>
+
+        <div class="checkout-divider"></div>
+
+        <div class="checkout-products-wrapper">
+          <button class="checkout-rec-arrow checkout-rec-prev" id="checkoutRecPrev" type="button">‹</button>
+
+          <div class="checkout-products" id="checkoutProducts"></div>
+
+          <button class="checkout-rec-arrow checkout-rec-next" id="checkoutRecNext" type="button">›</button>
+        </div>
+
+        <div class="checkout-dots" id="checkoutDots"></div>
+      </section>
+
+      <div class="checkout-actions-bottom">
+        <a href="produto.html" class="checkout-back">
+          ‹ Escolher mais produtos
+        </a>
+
+        <button class="checkout-continue-bottom" id="checkoutContinueBottom" type="button">
+          Continuar
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="checkout-footer">
+    <div class="checkout-container checkout-footer-grid">
+
+      <div class="checkout-footer-block">
+        <h3>Atendimento</h3>
+        <strong>☎ (11) 99187-0212</strong>
+        <a href="#">atendimento@vaaibrasil.com.br</a>
+        <p>Segunda a Sexta - 08h às 18h<br>Sábado - 08h às 13h</p>
+      </div>
+
+      <div class="checkout-footer-block">
+        <h3>Aceitamos</h3>
+        <div class="checkout-payment-icons">
+          <span>Pix</span>
+          <span>Boleto</span>
+          <span>Cartão</span>
+        </div>
+      </div>
+
+      <div class="checkout-footer-block">
+        <h3>Segurança</h3>
+        <div class="checkout-security-seal">
+          <span>SEUS DADOS<br>100% SEGUROS</span>
+          <strong>🔒</strong>
+        </div>
+
+        <div class="checkout-store-seal">
+          LOJA PROTEGIDA
+        </div>
+      </div>
+
+    </div>
+
+    <div class="checkout-footer-copy">
+      VAAAI BRASIL
+    </div>
+  </footer>
+
+  <button class="checkout-scroll-top" id="checkoutScrollTop" type="button">
+    ↑ Voltar ao topo da página
+  </button>
+
+  <script src="js/script-produto.js"></script>
+</body>
+</html>
