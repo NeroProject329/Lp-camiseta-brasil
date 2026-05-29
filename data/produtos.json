@@ -132,5 +132,94 @@
       "Secar à sombra",
       "Evitar secadora"
     ]
-  }
+  },
+
+  "combo-2-camisas": {
+  "id": "combo-2-camisas",
+  "isCombo": true,
+  "bundleCount": 2,
+  "name": "Combo 2 Camisas Brasil - Escolha seus modelos",
+  "shortName": "Combo 2 Camisas",
+  "brand": "Brasil",
+  "category": "Combo Promocional",
+  "type": "Combo",
+  "color": "Personalizável",
+  "badge": "5% OFF",
+  "oldPrice": "R$ 399,98",
+  "price": "R$ 349,90",
+  "cashPrice": "R$ 314,91 à vista",
+  "installments": "ou em até 5x de R$ 69,98 sem juros",
+  "mainImage": "assets/camiseta-amarela/frente.webp",
+  "images": [
+    "assets/camiseta-amarela/frente.webp",
+    "assets/camiseta-azul/frente.jpg",
+    "assets/camiseta-preta/frente.png"
+  ],
+  "availableProducts": [
+    "camiseta-amarela",
+    "camiseta-azul",
+    "camiseta-preta"
+  ],
+  "sizes": ["P", "M", "G", "GG"],
+  "defaultSize": "G",
+  "description": "Escolha duas camisetas do Brasil em um combo promocional. Você pode selecionar modelos, tamanhos, nome e número de cada camisa.",
+  "specs": [
+    "Combo com 2 camisas à escolha",
+    "Modelos disponíveis: Amarela, Azul e Preta",
+    "Personalização individual por camisa",
+    "Ideal para comprar junto e economizar"
+  ],
+  "washing": [
+    "Lavar à mão ou em ciclo delicado",
+    "Não utilizar alvejante",
+    "Secar à sombra",
+    "Não passar ferro sobre estampas ou escudo"
+  ]
+},
+
+"combo-3-camisas": {
+  "id": "combo-3-camisas",
+  "isCombo": true,
+  "bundleCount": 3,
+  "name": "Combo 3 Camisas Brasil - Escolha seus modelos",
+  "shortName": "Combo 3 Camisas",
+  "brand": "Brasil",
+  "category": "Combo Promocional",
+  "type": "Combo",
+  "color": "Personalizável",
+  "badge": "10% OFF",
+  "oldPrice": "R$ 599,97",
+  "price": "R$ 499,90",
+  "cashPrice": "R$ 449,91 à vista",
+  "installments": "ou em até 5x de R$ 99,98 sem juros",
+  "mainImage": "assets/camiseta-amarela/frente.webp",
+  "images": [
+    "assets/camiseta-amarela/frente.webp",
+    "assets/camiseta-azul/frente.jpg",
+    "assets/camiseta-preta/frente.png"
+  ],
+  "availableProducts": [
+    "camiseta-amarela",
+    "camiseta-azul",
+    "camiseta-preta"
+  ],
+  "sizes": ["P", "M", "G", "GG"],
+  "defaultSize": "G",
+  "description": "Escolha três camisetas do Brasil em um combo promocional. Você pode selecionar modelos, tamanhos, nome e número de cada camisa.",
+  "specs": [
+    "Combo com 3 camisas à escolha",
+    "Modelos disponíveis: Amarela, Azul e Preta",
+    "Personalização individual por camisa",
+    "Ideal para comprar em grupo, família ou economizar mais"
+  ],
+  "washing": [
+    "Lavar à mão ou em ciclo delicado",
+    "Não utilizar alvejante",
+    "Secar à sombra",
+    "Não passar ferro sobre estampas ou escudo"
+  ]
 }
+
+}
+
+

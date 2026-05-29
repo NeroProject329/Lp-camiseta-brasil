@@ -1,5 +1,5 @@
 const PRODUCT_JSON_PATH = "data/produtos.json";
-const WHATSAPP_NUMBER = "5500000000000";
+const WHATSAPP_NUMBER = "5511973946730";
 const CART_STORAGE_KEY = "vaaaiBrasilCart";
 
 const EXTRA_NAME_CENTS = 2500;
@@ -21,6 +21,7 @@ const aliases = {
 let products = {};
 let currentProduct = null;
 let currentImageIndex = 0;
+let comboSelection = [];
 
 function getEl(id) {
   return document.getElementById(id);
@@ -112,15 +113,7 @@ function createWhatsAppLinkFromCart() {
   }
 
   const lines = cart.map((item, index) => {
-    return [
-      `${index + 1}. ${item.shortName}`,
-      `Tamanho: ${item.size}`,
-      item.customName ? `Nome: ${item.customName}` : "",
-      item.customNumber ? `Número: ${item.customNumber}` : "",
-      `Qtd: ${item.qty}`,
-      `Unitário: ${formatMoney(item.unitPriceCents)}`,
-      `Total: ${formatMoney(item.unitPriceCents * item.qty)}`
-    ].filter(Boolean).join("\n");
+    return getCartItemText(item, index, formatMoney);
   });
 
   const subtotal = cart.reduce((total, item) => {
@@ -388,6 +381,11 @@ function createCartItemId(product, selection) {
 function addCurrentProductToCart() {
   if (!currentProduct) return;
 
+  if (currentProduct.isCombo) {
+    addComboToCart();
+    return;
+  }
+
   const selection = getCurrentSelection();
 
   if (!selection.size) {
@@ -421,6 +419,56 @@ function addCurrentProductToCart() {
   saveCart(cart);
   openCart();
   showToast("Produto adicionado ao carrinho.");
+}
+
+function getCartItemMetaHtml(item) {
+  if (item.isCombo && Array.isArray(item.comboItems)) {
+    return item.comboItems.map((shirt, index) => {
+      return `
+        <p><strong>Camisa ${index + 1}:</strong> ${shirt.shortName}</p>
+        <p>- Tamanho: ${shirt.size}</p>
+        ${shirt.customName ? `<p>- Nome: ${shirt.customName}</p>` : ""}
+        ${shirt.customNumber ? `<p>- Número: ${shirt.customNumber}</p>` : ""}
+      `;
+    }).join("");
+  }
+
+  return `
+    <p>- Tamanho: ${item.size}</p>
+    ${item.customName ? `<p>- Nome: ${item.customName}</p>` : ""}
+    ${item.customNumber ? `<p>- Número: ${item.customNumber}</p>` : ""}
+  `;
+}
+
+function getCartItemText(item, index, moneyFormatter = formatMoney) {
+  if (item.isCombo && Array.isArray(item.comboItems)) {
+    const comboLines = item.comboItems.map((shirt, shirtIndex) => {
+      return [
+        `Camisa ${shirtIndex + 1}: ${shirt.shortName}`,
+        `Tamanho: ${shirt.size}`,
+        shirt.customName ? `Nome: ${shirt.customName}` : "",
+        shirt.customNumber ? `Número: ${shirt.customNumber}` : ""
+      ].filter(Boolean).join("\n");
+    }).join("\n\n");
+
+    return [
+      `${index + 1}. ${item.shortName}`,
+      comboLines,
+      `Qtd do combo: ${item.qty}`,
+      `Unitário: ${moneyFormatter(item.unitPriceCents)}`,
+      `Total: ${moneyFormatter(item.unitPriceCents * item.qty)}`
+    ].join("\n");
+  }
+
+  return [
+    `${index + 1}. ${item.shortName}`,
+    `Tamanho: ${item.size}`,
+    item.customName ? `Nome: ${item.customName}` : "",
+    item.customNumber ? `Número: ${item.customNumber}` : "",
+    `Qtd: ${item.qty}`,
+    `Unitário: ${moneyFormatter(item.unitPriceCents)}`,
+    `Total: ${moneyFormatter(item.unitPriceCents * item.qty)}`
+  ].filter(Boolean).join("\n");
 }
 
 function renderCart() {
@@ -461,10 +509,8 @@ function renderCart() {
           </div>
 
           <div class="cart-mobile-meta">
-            <p>- Tamanho: ${item.size}</p>
-            ${item.customName ? `<p>- Nome: ${item.customName}</p>` : ""}
-            ${item.customNumber ? `<p>- Número: ${item.customNumber}</p>` : ""}
-          </div>
+  ${getCartItemMetaHtml(item)}
+</div>
 
           <strong class="cart-mobile-price">
             ${formatMoney(item.unitPriceCents * item.qty)}
@@ -631,12 +677,31 @@ function renderProduct(product) {
   setImage("stickyImage", product.mainImage, product.shortName);
 
   renderThumbs(product);
-  renderSizes(product);
   renderList("productSpecs", product.specs);
   renderList("productWashing", product.washing);
   renderRelatedProducts(product.id);
   loadExternalDescription(product);
-  updatePersonalizationPreview();
+
+  const comboBuilder = getEl("comboBuilder");
+  const sizeBlock = document.querySelector(".size-block");
+  const customFields = document.querySelector(".custom-fields");
+  const shirtPreview = getEl("shirtPreview");
+
+  if (product.isCombo) {
+    if (sizeBlock) sizeBlock.style.display = "none";
+    if (customFields) customFields.style.display = "none";
+    if (shirtPreview) shirtPreview.classList.remove("active");
+
+    renderComboBuilder(product);
+  } else {
+    if (comboBuilder) comboBuilder.hidden = true;
+    if (sizeBlock) sizeBlock.style.display = "";
+    if (customFields) customFields.style.display = "";
+
+    renderSizes(product);
+    updatePersonalizationPreview();
+  }
+
   updateWhatsappButton();
 }
 
@@ -776,6 +841,29 @@ function checkoutGetSubtotal(cart) {
   }, 0);
 }
 
+function getCheckoutCartImagesHtml(item) {
+  if (item.isCombo && Array.isArray(item.comboItems)) {
+    return `
+      <div class="checkout-cart-image checkout-cart-image-combo combo-${item.comboItems.length}">
+        ${item.comboItems.map((shirt, index) => {
+          return `
+            <div class="checkout-combo-shirt">
+              <img src="${shirt.image}" alt="${shirt.shortName}">
+              <span>${index + 1}</span>
+            </div>
+          `;
+        }).join("")}
+      </div>
+    `;
+  }
+
+  return `
+    <div class="checkout-cart-image">
+      <img src="${item.image}" alt="${item.shortName}">
+    </div>
+  `;
+}
+
 function checkoutRenderCart() {
   const list = checkoutGetEl("checkoutCartList");
   const empty = checkoutGetEl("checkoutEmpty");
@@ -811,36 +899,32 @@ function checkoutRenderCart() {
 
   empty.classList.remove("active");
 
-  list.innerHTML = cart.map((item) => {
-    return `
-      <article class="checkout-cart-item">
-        <div class="checkout-cart-image">
-          <img src="${item.image}" alt="${item.shortName}">
-        </div>
+list.innerHTML = cart.map((item) => {
+  return `
+    <article class="checkout-cart-item">
+      ${getCheckoutCartImagesHtml(item)}
 
-        <div class="checkout-cart-info">
-          <h3>${item.name || item.shortName}</h3>
-          <p>Tamanho ${item.size}</p>
-          ${item.customName ? `<p>Nome: ${item.customName}</p>` : ""}
-          ${item.customNumber ? `<p>Número: ${item.customNumber}</p>` : ""}
-        </div>
+      <div class="checkout-cart-info">
+        <h3>${item.name || item.shortName}</h3>
+        ${getCartItemMetaHtml(item)}
+      </div>
 
-        <div class="checkout-cart-qty">
-          <button type="button" data-checkout-action="decrease" data-checkout-id="${item.id}">−</button>
-          <span>${item.qty}</span>
-          <button type="button" data-checkout-action="increase" data-checkout-id="${item.id}">+</button>
-        </div>
+      <div class="checkout-cart-qty">
+        <button type="button" data-checkout-action="decrease" data-checkout-id="${item.id}">−</button>
+        <span>${item.qty}</span>
+        <button type="button" data-checkout-action="increase" data-checkout-id="${item.id}">+</button>
+      </div>
 
-        <strong class="checkout-cart-price">
-          ${checkoutFormatMoney(item.unitPriceCents * item.qty)}
-        </strong>
+      <strong class="checkout-cart-price">
+        ${checkoutFormatMoney(item.unitPriceCents * item.qty)}
+      </strong>
 
-        <button class="checkout-cart-remove" type="button" data-checkout-action="remove" data-checkout-id="${item.id}">
-          🗑
-        </button>
-      </article>
-    `;
-  }).join("");
+      <button class="checkout-cart-remove" type="button" data-checkout-action="remove" data-checkout-id="${item.id}">
+        🗑
+      </button>
+    </article>
+  `;
+}).join("");
 }
 
 function checkoutChangeQty(itemId, action) {
@@ -864,15 +948,8 @@ function checkoutCreateWhatsAppLink() {
   const cart = checkoutGetCart();
 
   const lines = cart.map((item, index) => {
-    return [
-      `${index + 1}. ${item.shortName}`,
-      `Tamanho: ${item.size}`,
-      item.customName ? `Nome: ${item.customName}` : "",
-      item.customNumber ? `Número: ${item.customNumber}` : "",
-      `Qtd: ${item.qty}`,
-      `Total: ${checkoutFormatMoney(item.unitPriceCents * item.qty)}`
-    ].filter(Boolean).join("\n");
-  });
+  return getCartItemText(item, index, checkoutFormatMoney);
+});
 
   const subtotal = checkoutGetSubtotal(cart);
   const cep = checkoutGetEl("checkoutCep")?.value || "";
@@ -994,7 +1071,7 @@ checkoutInit();
 ========================================================= */
 
 const FP_CART_KEY = "vaaaiBrasilCart";
-const FP_WHATSAPP = "5500000000000";
+const FP_WHATSAPP = "5511973946730";
 
 function fpEl(id) {
   return document.getElementById(id);
@@ -1038,6 +1115,29 @@ function fpOpenStep(stepNumber) {
   fpEl(`fpStep${stepNumber}`)?.classList.add("fp-step-active");
 }
 
+function getFpProductImagesHtml(item) {
+  if (item.isCombo && Array.isArray(item.comboItems)) {
+    return `
+      <div class="fp-product-combo-images combo-${item.comboItems.length}">
+        ${item.comboItems.map((shirt, index) => {
+          return `
+            <div class="fp-product-combo-shirt">
+              <img src="${shirt.image}" alt="${shirt.shortName}">
+              <span>${index + 1}</span>
+            </div>
+          `;
+        }).join("")}
+      </div>
+    `;
+  }
+
+  return `
+    <div class="fp-product-single-image">
+      <img src="${item.image}" alt="${item.shortName}">
+    </div>
+  `;
+}
+
 function fpRenderCart() {
   const cart = fpCart();
   const list = fpEl("fpProductList");
@@ -1050,13 +1150,11 @@ function fpRenderCart() {
   list.innerHTML = cart.map((item) => {
     return `
       <article class="fp-product-item">
-        <img src="${item.image}" alt="${item.shortName}">
+        ${getFpProductImagesHtml(item)}
 
         <div>
           <h3>${item.shortName}</h3>
-          ${item.customName ? `<p>Nome: ${item.customName}</p>` : ""}
-          ${item.customNumber ? `<p>Número: ${item.customNumber}</p>` : ""}
-          <p>Tamanho ${item.size}</p>
+          ${getCartItemMetaHtml(item)}
         </div>
 
         <strong>${fpMoney(item.unitPriceCents * item.qty)}</strong>
@@ -1182,52 +1280,150 @@ function fpSelectPayment(input) {
   fpUpdateSummary();
 }
 
+function fpGetPaymentLabel(paymentValue) {
+  const labels = {
+    pix: "Pix",
+    credit: "Cartão de Crédito",
+    boleto: "Boleto Bancário"
+  };
+
+  return labels[paymentValue] || paymentValue || "Não informado";
+}
+
+function fpHasCustomization(name, number) {
+  return Boolean(String(name || "").trim() || String(number || "").trim());
+}
+
+function fpFormatCustomization(name, number) {
+  const hasCustomization = fpHasCustomization(name, number);
+
+  return [
+    `Personalização: ${hasCustomization ? "Sim" : "Não"}`,
+    `Nome: ${name ? name : "Sem nome"}`,
+    `Número: ${number ? number : "Sem número"}`
+  ].join("\n");
+}
+
+function fpFormatCartItemForWhatsapp(item, index) {
+  if (item.isCombo && Array.isArray(item.comboItems)) {
+    const comboItemsText = item.comboItems.map((shirt, shirtIndex) => {
+      return [
+        `Camisa ${shirtIndex + 1}:`,
+        `Modelo: ${shirt.shortName}`,
+        `Tamanho: ${shirt.size}`,
+        fpFormatCustomization(shirt.customName, shirt.customNumber)
+      ].join("\n");
+    }).join("\n\n");
+
+    return [
+      `${index + 1}. ${item.shortName}`,
+      `Tipo: COMBO`,
+      `Quantidade do combo: ${item.qty}`,
+      "",
+      comboItemsText,
+      "",
+      `Valor unitário do combo: ${fpMoney(item.unitPriceCents)}`,
+      `Total do combo: ${fpMoney(item.unitPriceCents * item.qty)}`
+    ].join("\n");
+  }
+
+  return [
+    `${index + 1}. ${item.shortName}`,
+    `Tipo: CAMISETA INDIVIDUAL`,
+    `Modelo: ${item.shortName}`,
+    `Tamanho: ${item.size}`,
+    fpFormatCustomization(item.customName, item.customNumber),
+    `Quantidade: ${item.qty}`,
+    `Valor unitário: ${fpMoney(item.unitPriceCents)}`,
+    `Total: ${fpMoney(item.unitPriceCents * item.qty)}`
+  ].join("\n");
+}
+
 function fpFinishOrder() {
   if (!(fpState.personal && fpState.address && fpState.shipping && fpState.payment)) {
+    alert("Finalize todas as etapas antes de concluir o pedido.");
     return;
   }
 
   const cart = fpCart();
+
+  if (!cart.length) {
+    alert("Seu carrinho está vazio.");
+    return;
+  }
+
   const subtotal = fpSubtotal();
   const discount = Math.round(subtotal * (fpState.discountPercent / 100));
   const total = subtotal - discount;
 
+  const paymentLabel = fpGetPaymentLabel(fpState.payment);
+
   const products = cart.map((item, index) => {
-    return [
-      `${index + 1}. ${item.shortName}`,
-      `Tamanho: ${item.size}`,
-      item.customName ? `Nome: ${item.customName}` : "",
-      item.customNumber ? `Número: ${item.customNumber}` : "",
-      `Qtd: ${item.qty}`,
-      `Total: ${fpMoney(item.unitPriceCents * item.qty)}`
-    ].filter(Boolean).join("\n");
-  }).join("\n\n");
+    return fpFormatCartItemForWhatsapp(item, index);
+  }).join("\n\n-----------------------------\n\n");
+
+  const customer = [
+    `Nome: ${fpEl("fpName").value}`,
+    `E-mail: ${fpEl("fpEmail").value}`,
+    `CPF: ${fpEl("fpCpf").value}`,
+    `Telefone: ${fpEl("fpPhone").value}`
+  ].join("\n");
+
+  const address = [
+    `CEP: ${fpEl("fpCep").value}`,
+    `Rua: ${fpEl("fpStreet").value}`,
+    `Número: ${fpEl("fpNumber").value}`,
+    `Complemento: ${fpEl("fpComplement").value || "-"}`,
+    `Bairro: ${fpEl("fpDistrict").value}`,
+    `Cidade: ${fpEl("fpCity").value}`,
+    `Estado: ${fpEl("fpState").value}`
+  ].join("\n");
+
+  const payment = [
+    `Forma de pagamento: ${paymentLabel}`,
+    `Desconto aplicado: ${fpState.discountPercent}%`,
+    `Subtotal: ${fpMoney(subtotal)}`,
+    `Desconto: ${fpMoney(discount)}`,
+    `Total final: ${fpMoney(total)}`
+  ].join("\n");
+
+  const orderCode = `VB-${Date.now()}`;
 
   const message = `
-Olá! Quero finalizar meu pedido:
+Olá! Quero finalizar meu pedido.
+
+Código do pedido: ${orderCode}
+
+=============================
+PRODUTOS
+=============================
 
 ${products}
 
-Dados:
-Nome: ${fpEl("fpName").value}
-E-mail: ${fpEl("fpEmail").value}
-CPF: ${fpEl("fpCpf").value}
-Telefone: ${fpEl("fpPhone").value}
+=============================
+DADOS DO CLIENTE
+=============================
 
-Endereço:
-CEP: ${fpEl("fpCep").value}
-Rua: ${fpEl("fpStreet").value}
-Número: ${fpEl("fpNumber").value}
-Complemento: ${fpEl("fpComplement").value || "-"}
-Bairro: ${fpEl("fpDistrict").value}
-Cidade: ${fpEl("fpCity").value}
-Estado: ${fpEl("fpState").value}
+${customer}
 
-Envio: Transportadora grátis
-Pagamento: ${fpState.payment}
-Subtotal: ${fpMoney(subtotal)}
-Desconto: ${fpMoney(discount)}
-Total: ${fpMoney(total)}
+=============================
+ENDEREÇO DE ENTREGA
+=============================
+
+${address}
+
+=============================
+ENVIO
+=============================
+
+Forma de envio: Transportadora
+Frete: Grátis
+
+=============================
+PAGAMENTO
+=============================
+
+${payment}
 `.trim();
 
   window.open(`https://wa.me/${FP_WHATSAPP}?text=${encodeURIComponent(message)}`, "_blank");
@@ -1402,3 +1598,212 @@ function fpMoveFinishButtonMobile() {
 
 window.addEventListener("load", fpMoveFinishButtonMobile);
 window.addEventListener("resize", fpMoveFinishButtonMobile);
+
+function getSelectableComboProducts() {
+  return Object.values(products).filter((product) => !product.isCombo);
+}
+
+function getDefaultComboSelection(combo) {
+  const shirts = getSelectableComboProducts();
+
+  return Array.from({ length: combo.bundleCount }, (_, index) => {
+    const shirt = shirts[index % shirts.length];
+
+    return {
+      productId: shirt.id,
+      size: shirt.defaultSize || shirt.sizes[0],
+      customName: "",
+      customNumber: ""
+    };
+  });
+}
+
+function renderComboBuilder(combo) {
+  const builder = getEl("comboBuilder");
+  const slots = getEl("comboSlots");
+
+  if (!builder || !slots) return;
+
+  builder.hidden = false;
+
+  comboSelection = getDefaultComboSelection(combo);
+
+  renderComboSlots();
+}
+
+function renderComboSlots() {
+  const slots = getEl("comboSlots");
+  if (!slots) return;
+
+  const shirts = getSelectableComboProducts();
+
+  slots.innerHTML = comboSelection.map((slot, index) => {
+    const selectedProduct = products[slot.productId];
+
+    const options = shirts.map((shirt) => {
+      return `
+        <option value="${shirt.id}" ${shirt.id === slot.productId ? "selected" : ""}>
+          ${shirt.shortName}
+        </option>
+      `;
+    }).join("");
+
+    const sizes = selectedProduct.sizes.map((size) => {
+      return `
+        <button 
+          type="button" 
+          class="${size === slot.size ? "active" : ""}"
+          data-combo-size="${size}"
+          data-combo-index="${index}"
+        >
+          ${size}
+        </button>
+      `;
+    }).join("");
+
+    return `
+      <article class="combo-slot">
+        <div class="combo-slot-title">
+          <strong>Camisa ${index + 1}</strong>
+          <span>Personalize</span>
+        </div>
+
+        <div class="combo-slot-grid">
+          <div class="combo-slot-image">
+            <img src="${selectedProduct.mainImage}" alt="${selectedProduct.shortName}">
+          </div>
+
+          <div class="combo-slot-fields">
+            <select data-combo-model="${index}">
+              ${options}
+            </select>
+
+            <div class="combo-slot-sizes">
+              ${sizes}
+            </div>
+
+            <input 
+              type="text" 
+              placeholder="Nome na camisa" 
+              maxlength="12"
+              value="${slot.customName}"
+              data-combo-name="${index}"
+            >
+
+            <input 
+              type="text" 
+              placeholder="Número na camisa" 
+              maxlength="2"
+              inputmode="numeric"
+              value="${slot.customNumber}"
+              data-combo-number="${index}"
+            >
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  setupComboSlotEvents();
+}
+
+function setupComboSlotEvents() {
+  document.querySelectorAll("[data-combo-model]").forEach((select) => {
+    select.addEventListener("change", () => {
+      const index = Number(select.dataset.comboModel);
+      const product = products[select.value];
+
+      comboSelection[index].productId = select.value;
+      comboSelection[index].size = product.defaultSize || product.sizes[0];
+
+      renderComboSlots();
+    });
+  });
+
+  document.querySelectorAll("[data-combo-size]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const index = Number(button.dataset.comboIndex);
+      comboSelection[index].size = button.dataset.comboSize;
+
+      renderComboSlots();
+    });
+  });
+
+  document.querySelectorAll("[data-combo-name]").forEach((input) => {
+    input.addEventListener("input", () => {
+      const index = Number(input.dataset.comboName);
+
+      input.value = input.value
+        .replace(/[^a-zA-ZÀ-ÿ\s]/g, "")
+        .slice(0, 12)
+        .toUpperCase();
+
+      comboSelection[index].customName = input.value;
+    });
+  });
+
+  document.querySelectorAll("[data-combo-number]").forEach((input) => {
+    input.addEventListener("input", () => {
+      const index = Number(input.dataset.comboNumber);
+
+      input.value = input.value
+        .replace(/\D/g, "")
+        .slice(0, 2);
+
+      comboSelection[index].customNumber = input.value;
+    });
+  });
+}
+
+function addComboToCart() {
+  if (!currentProduct || !currentProduct.isCombo) return;
+
+  const qtyInput = getEl("qtyInput");
+  const qty = Math.max(1, Number(qtyInput?.value) || 1);
+
+  const comboItems = comboSelection.map((slot) => {
+    const shirt = products[slot.productId];
+
+    return {
+      productId: shirt.id,
+      shortName: shirt.shortName,
+      image: shirt.mainImage,
+      size: slot.size,
+      customName: slot.customName,
+      customNumber: slot.customNumber
+    };
+  });
+
+  const unitPriceCents = moneyToCents(currentProduct.price);
+
+  const itemId = [
+    currentProduct.id,
+    ...comboItems.map((item) => {
+      return `${item.productId}-${item.size}-${item.customName || "semnome"}-${item.customNumber || "semnumero"}`;
+    })
+  ].join("__").toLowerCase();
+
+  const cart = getCart();
+  const existingItem = cart.find((item) => item.id === itemId);
+
+  if (existingItem) {
+    existingItem.qty += qty;
+  } else {
+    cart.push({
+      id: itemId,
+      isCombo: true,
+      productId: currentProduct.id,
+      name: currentProduct.name,
+      shortName: currentProduct.shortName,
+      image: comboItems[0]?.image || currentProduct.mainImage,
+      qty,
+      unitPriceCents,
+      basePriceCents: unitPriceCents,
+      comboItems
+    });
+  }
+
+  saveCart(cart);
+  openCart();
+  showToast("Combo adicionado ao carrinho.");
+}
