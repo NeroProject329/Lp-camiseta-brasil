@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Finalizar Pedido | Vaaai Brasil</title>
+
+  <link rel="stylesheet" href="css/style-produto.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+</head>
+
+<body class="finalizar-pedido-page">
+
+  <header class="fp-header">
+    <div class="fp-container fp-header-inner">
+      <a href="index.html" class="fp-logo">
+        <img src="assets/logo.png" alt="Vaaai Brasil">
+      </a>
+
+      <div class="fp-secure">
+        <span>SEUS DADOS<br>100% SEGUROS</span>
+        <strong>🔒</strong>
+      </div>
+    </div>
+  </header>
+
+  <main class="fp-main">
+    <div class="fp-container fp-layout">
+
+      <section class="fp-steps">
+
+        <!-- STEP 1 -->
+        <article class="fp-step fp-step-active" id="fpStep1">
+          <header class="fp-step-header">
+            <div>
+              <span class="fp-step-number">1</span>
+              <h2>Informações pessoais</h2>
+            </div>
+
+            <div class="fp-step-summary" id="fpPersonalSummary"></div>
+          </header>
+
+          <div class="fp-step-content">
+            <div class="fp-form-grid">
+              <label class="fp-field">
+                <span>E-mail</span>
+                <input id="fpEmail" type="email" placeholder="seuemail@gmail.com">
+              </label>
+
+              <label class="fp-field">
+                <span>Nome completo</span>
+                <input id="fpName" type="text" placeholder="Seu nome completo">
+              </label>
+
+              <label class="fp-field">
+                <span>CPF</span>
+                <input id="fpCpf" type="text" placeholder="000.000.000-00" inputmode="numeric">
+              </label>
+
+              <label class="fp-field">
+                <span>Telefone celular ou fixo</span>
+                <input id="fpPhone" type="text" placeholder="(11) 99999-9999" inputmode="numeric">
+              </label>
+            </div>
+
+            <label class="fp-checkbox">
+              <input type="checkbox" id="fpPromo">
+              <span>Desejo receber e-mails promocionais</span>
+            </label>
+
+            <label class="fp-checkbox">
+              <input type="checkbox" id="fpLegalPerson">
+              <span>Fazer meu cadastro como <strong>Pessoa Jurídica.</strong></span>
+            </label>
+
+            <button class="fp-save-button" id="fpSavePersonal" type="button">
+              Salvar
+            </button>
+          </div>
+        </article>
+
+        <!-- STEP 2 -->
+        <article class="fp-step fp-step-locked" id="fpStep2">
+          <header class="fp-step-header">
+            <div>
+              <span class="fp-step-number">2</span>
+              <h2>Endereço de entrega</h2>
+            </div>
+
+            <div class="fp-step-summary" id="fpAddressSummary"></div>
+          </header>
+
+          <div class="fp-step-content">
+            <div class="fp-address-top">
+              <label class="fp-field">
+                <span>CEP</span>
+                <input id="fpCep" type="text" placeholder="00000-000" inputmode="numeric">
+              </label>
+
+              <button class="fp-link-button" type="button">
+                Não sei meu CEP
+              </button>
+            </div>
+
+            <div class="fp-form-grid">
+              <label class="fp-field">
+                <span>Endereço</span>
+                <input id="fpStreet" type="text" placeholder="Rua, avenida, travessa...">
+              </label>
+
+              <label class="fp-field fp-field-errorable">
+                <span>Número</span>
+                <input id="fpNumber" type="text" placeholder="Número">
+                <small id="fpNumberError">Informe o número</small>
+              </label>
+
+              <label class="fp-field">
+                <span>Complemento opcional</span>
+                <input id="fpComplement" type="text" placeholder="Apartamento, bloco, casa...">
+              </label>
+
+              <label class="fp-field">
+                <span>Bairro</span>
+                <input id="fpDistrict" type="text" placeholder="Bairro">
+              </label>
+
+              <label class="fp-field">
+                <span>Cidade</span>
+                <input id="fpCity" type="text" placeholder="Cidade">
+              </label>
+
+              <label class="fp-field">
+                <span>Estado</span>
+                <input id="fpState" type="text" placeholder="UF" maxlength="2">
+              </label>
+            </div>
+
+            <button class="fp-save-button" id="fpSaveAddress" type="button">
+              Verifique os itens pendentes acima.
+            </button>
+          </div>
+        </article>
+
+        <!-- STEP 3 -->
+        <article class="fp-step fp-step-locked" id="fpStep3">
+          <header class="fp-step-header">
+            <div>
+              <span class="fp-step-number">3</span>
+              <h2>Formas de envio</h2>
+            </div>
+
+            <div class="fp-step-summary" id="fpShippingSummary">
+              Finalize o passo anterior para continuar
+            </div>
+          </header>
+
+          <div class="fp-step-content">
+            <label class="fp-option-card">
+              <input type="radio" name="shipping" value="Transportadora" checked>
+              <div>
+                <strong>Transportadora</strong>
+                <span>Entrega grátis para todo o Brasil</span>
+              </div>
+              <b>Grátis</b>
+            </label>
+
+            <button class="fp-save-button" id="fpSaveShipping" type="button">
+              Continuar
+            </button>
+          </div>
+        </article>
+
+        <!-- STEP 4 -->
+        <article class="fp-step fp-step-locked" id="fpStep4">
+          <header class="fp-step-header">
+            <div>
+              <span class="fp-step-number">4</span>
+              <h2>Pagamento</h2>
+            </div>
+
+            <div class="fp-step-summary" id="fpPaymentSummary">
+              Finalize o passo anterior para continuar
+            </div>
+          </header>
+
+          <div class="fp-step-content">
+            <label class="fp-payment-option">
+              <input type="radio" name="payment" value="pix" data-discount="10">
+              <span class="fp-payment-icon">❖</span>
+              <div>
+                <strong>Pix</strong>
+                <small>10% de desconto</small>
+              </div>
+              <b>à vista</b>
+            </label>
+
+            <label class="fp-payment-option">
+              <input type="radio" name="payment" value="credit" data-discount="0">
+              <span class="fp-payment-icon">💳</span>
+              <div>
+                <strong>Cartão de Crédito</strong>
+                <small>Até 5x sem juros</small>
+              </div>
+              <b>até 12x</b>
+            </label>
+
+            <label class="fp-payment-option">
+              <input type="radio" name="payment" value="boleto" data-discount="10">
+              <span class="fp-payment-icon">▥</span>
+              <div>
+                <strong>Boleto Bancário</strong>
+                <small>10% de desconto</small>
+              </div>
+              <b>à vista</b>
+            </label>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- SIDEBAR -->
+      <aside class="fp-sidebar">
+        <section class="fp-products-box">
+          <div class="fp-sidebar-title">
+            <h2>Produtos <span id="fpProductCount">(0)</span></h2>
+            <a href="finalizar-compra.html">Voltar 🛒</a>
+          </div>
+
+          <div class="fp-product-list" id="fpProductList"></div>
+        </section>
+
+        <section class="fp-summary-box">
+          <h2>Resumo do pedido</h2>
+
+          <div class="fp-line">
+            <span>Subtotal</span>
+            <strong id="fpSubtotal">R$ 0,00</strong>
+          </div>
+
+          <div class="fp-line" id="fpFreteLine">
+            <span>Frete (Transportadora)</span>
+            <strong>Grátis</strong>
+          </div>
+
+          <div class="fp-line fp-discount-line" id="fpDiscountLine">
+            <span>Desconto da forma de pagamento</span>
+            <strong id="fpDiscount">-R$ 0,00</strong>
+          </div>
+
+          <div class="fp-line">
+            <span>Cupom de desconto</span>
+            <button type="button">Adicionar cupom</button>
+          </div>
+
+          <div class="fp-total-line">
+            <span>Total do pedido</span>
+            <strong id="fpTotal">R$ 0,00</strong>
+          </div>
+
+          <button class="fp-observation" type="button">
+            Adicionar observações no pedido
+            <span>⌄</span>
+          </button>
+        </section>
+
+        <button class="fp-finish-button" id="fpFinishOrder" type="button" disabled>
+          Finalizar pedido
+        </button>
+      </aside>
+
+    </div>
+  </main>
+
+  <footer class="checkout-footer fp-footer">
+    <div class="checkout-container checkout-footer-grid">
+
+      <div class="checkout-footer-block">
+        <h3>Atendimento</h3>
+        <strong>☎ (11) 99187-0212</strong>
+        <a href="#">atendimento@vaaibrasil.com.br</a>
+        <p>Segunda a Sexta - 08h às 18h<br>Sábado - 08h às 13h</p>
+      </div>
+
+      <div class="checkout-footer-block">
+        <h3>Aceitamos</h3>
+        <div class="checkout-payment-icons">
+          <span>Pix</span>
+          <span>Boleto</span>
+          <span>Cartão</span>
+        </div>
+      </div>
+
+      <div class="checkout-footer-block">
+        <h3>Segurança</h3>
+        <div class="checkout-security-seal">
+          <span>SEUS DADOS<br>100% SEGUROS</span>
+          <strong>🔒</strong>
+        </div>
+
+        <div class="checkout-store-seal">
+          LOJA PROTEGIDA
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="js/script-produto.js"></script>
+</body>
+</html>

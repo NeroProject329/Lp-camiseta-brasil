@@ -965,13 +965,13 @@ function checkoutSetupEvents() {
     result.textContent = "Frete grátis disponível para sua região.";
   });
 
-  checkoutGetEl("checkoutContinueTop")?.addEventListener("click", () => {
-    window.open(checkoutCreateWhatsAppLink(), "_blank");
-  });
+checkoutGetEl("checkoutContinueTop")?.addEventListener("click", () => {
+  window.location.href = "finalizar-pedido.html";
+});
 
-  checkoutGetEl("checkoutContinueBottom")?.addEventListener("click", () => {
-    window.open(checkoutCreateWhatsAppLink(), "_blank");
-  });
+checkoutGetEl("checkoutContinueBottom")?.addEventListener("click", () => {
+  window.location.href = "finalizar-pedido.html";
+});
 
   checkoutGetEl("checkoutScrollTop")?.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -987,3 +987,418 @@ function checkoutInit() {
 }
 
 checkoutInit();
+
+
+/* =========================================================
+   FINALIZAR PEDIDO - ETAPAS
+========================================================= */
+
+const FP_CART_KEY = "vaaaiBrasilCart";
+const FP_WHATSAPP = "5500000000000";
+
+function fpEl(id) {
+  return document.getElementById(id);
+}
+
+function fpCart() {
+  try {
+    return JSON.parse(localStorage.getItem(FP_CART_KEY)) || [];
+  } catch {
+    return [];
+  }
+}
+
+function fpMoney(cents) {
+  return (Number(cents) / 100).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
+}
+
+function fpSubtotal() {
+  return fpCart().reduce((total, item) => {
+    return total + item.unitPriceCents * item.qty;
+  }, 0);
+}
+
+let fpState = {
+  personal: false,
+  address: false,
+  shipping: false,
+  payment: null,
+  discountPercent: 0
+};
+
+function fpOpenStep(stepNumber) {
+  document.querySelectorAll(".fp-step").forEach((step) => {
+    step.classList.remove("fp-step-active");
+  });
+
+  fpEl(`fpStep${stepNumber}`)?.classList.remove("fp-step-locked");
+  fpEl(`fpStep${stepNumber}`)?.classList.add("fp-step-active");
+}
+
+function fpRenderCart() {
+  const cart = fpCart();
+  const list = fpEl("fpProductList");
+  const count = fpEl("fpProductCount");
+
+  if (!list || !count) return;
+
+  count.textContent = `(${cart.length})`;
+
+  list.innerHTML = cart.map((item) => {
+    return `
+      <article class="fp-product-item">
+        <img src="${item.image}" alt="${item.shortName}">
+
+        <div>
+          <h3>${item.shortName}</h3>
+          ${item.customName ? `<p>Nome: ${item.customName}</p>` : ""}
+          ${item.customNumber ? `<p>Número: ${item.customNumber}</p>` : ""}
+          <p>Tamanho ${item.size}</p>
+        </div>
+
+        <strong>${fpMoney(item.unitPriceCents * item.qty)}</strong>
+      </article>
+    `;
+  }).join("");
+
+  fpUpdateSummary();
+}
+
+function fpUpdateSummary() {
+  const subtotal = fpSubtotal();
+  const discount = Math.round(subtotal * (fpState.discountPercent / 100));
+  const total = subtotal - discount;
+
+  if (fpEl("fpSubtotal")) fpEl("fpSubtotal").textContent = fpMoney(subtotal);
+  if (fpEl("fpDiscount")) fpEl("fpDiscount").textContent = `-${fpMoney(discount)}`;
+  if (fpEl("fpTotal")) fpEl("fpTotal").textContent = fpMoney(total);
+
+  const discountLine = fpEl("fpDiscountLine");
+  if (discountLine) {
+    discountLine.style.display = discount > 0 ? "flex" : "none";
+  }
+
+  const finishButton = fpEl("fpFinishOrder");
+  if (finishButton) {
+    finishButton.disabled = !(fpState.personal && fpState.address && fpState.shipping && fpState.payment);
+  }
+}
+
+function fpValidatePersonal() {
+  const email = fpEl("fpEmail")?.value.trim();
+  const name = fpEl("fpName")?.value.trim();
+  const cpf = fpEl("fpCpf")?.value.trim();
+  const phone = fpEl("fpPhone")?.value.trim();
+
+  return Boolean(email && name && cpf && phone);
+}
+
+function fpSavePersonal() {
+  if (!fpValidatePersonal()) {
+    alert("Preencha suas informações pessoais para continuar.");
+    return;
+  }
+
+  fpState.personal = true;
+
+  fpEl("fpPersonalSummary").innerHTML = `
+    <span>${fpEl("fpName").value}</span>
+    <span>${fpEl("fpCpf").value}</span>
+    <span>${fpEl("fpEmail").value}</span>
+  `;
+
+  fpEl("fpStep1")?.classList.remove("fp-step-active");
+  fpEl("fpStep2")?.classList.remove("fp-step-locked");
+  fpOpenStep(2);
+  fpUpdateSummary();
+}
+
+function fpValidateAddress() {
+  const numberField = fpEl("fpNumber")?.closest(".fp-field-errorable");
+  const required = [
+    "fpCep",
+    "fpStreet",
+    "fpNumber",
+    "fpDistrict",
+    "fpCity",
+    "fpState"
+  ];
+
+  const valid = required.every((id) => fpEl(id)?.value.trim());
+
+  if (numberField) {
+    numberField.classList.toggle("fp-error", !fpEl("fpNumber")?.value.trim());
+  }
+
+  return valid;
+}
+
+function fpSaveAddress() {
+  if (!fpValidateAddress()) {
+    return;
+  }
+
+  fpState.address = true;
+
+  fpEl("fpAddressSummary").innerHTML = `
+    <span>${fpEl("fpCep").value}</span>
+    <span>${fpEl("fpStreet").value}</span>
+    <span>${fpEl("fpNumber").value}</span>
+  `;
+
+  fpEl("fpShippingSummary").textContent = "Transportadora";
+  fpEl("fpStep3")?.classList.remove("fp-step-locked");
+  fpOpenStep(3);
+  fpUpdateSummary();
+}
+
+function fpSaveShipping() {
+  fpState.shipping = true;
+  fpEl("fpShippingSummary").textContent = "Transportadora";
+  fpEl("fpPaymentSummary").textContent = "";
+  fpEl("fpStep4")?.classList.remove("fp-step-locked");
+  fpOpenStep(4);
+  fpUpdateSummary();
+}
+
+function fpSelectPayment(input) {
+  fpState.payment = input.value;
+  fpState.discountPercent = Number(input.dataset.discount || 0);
+
+  const label = input.closest(".fp-payment-option");
+  const title = label?.querySelector("strong")?.textContent || "";
+
+  fpEl("fpPaymentSummary").textContent = title;
+
+  document.querySelectorAll(".fp-payment-option").forEach((item) => {
+    item.classList.remove("selected");
+  });
+
+  label?.classList.add("selected");
+
+  fpUpdateSummary();
+}
+
+function fpFinishOrder() {
+  if (!(fpState.personal && fpState.address && fpState.shipping && fpState.payment)) {
+    return;
+  }
+
+  const cart = fpCart();
+  const subtotal = fpSubtotal();
+  const discount = Math.round(subtotal * (fpState.discountPercent / 100));
+  const total = subtotal - discount;
+
+  const products = cart.map((item, index) => {
+    return [
+      `${index + 1}. ${item.shortName}`,
+      `Tamanho: ${item.size}`,
+      item.customName ? `Nome: ${item.customName}` : "",
+      item.customNumber ? `Número: ${item.customNumber}` : "",
+      `Qtd: ${item.qty}`,
+      `Total: ${fpMoney(item.unitPriceCents * item.qty)}`
+    ].filter(Boolean).join("\n");
+  }).join("\n\n");
+
+  const message = `
+Olá! Quero finalizar meu pedido:
+
+${products}
+
+Dados:
+Nome: ${fpEl("fpName").value}
+E-mail: ${fpEl("fpEmail").value}
+CPF: ${fpEl("fpCpf").value}
+Telefone: ${fpEl("fpPhone").value}
+
+Endereço:
+CEP: ${fpEl("fpCep").value}
+Rua: ${fpEl("fpStreet").value}
+Número: ${fpEl("fpNumber").value}
+Complemento: ${fpEl("fpComplement").value || "-"}
+Bairro: ${fpEl("fpDistrict").value}
+Cidade: ${fpEl("fpCity").value}
+Estado: ${fpEl("fpState").value}
+
+Envio: Transportadora grátis
+Pagamento: ${fpState.payment}
+Subtotal: ${fpMoney(subtotal)}
+Desconto: ${fpMoney(discount)}
+Total: ${fpMoney(total)}
+`.trim();
+
+  window.open(`https://wa.me/${FP_WHATSAPP}?text=${encodeURIComponent(message)}`, "_blank");
+}
+
+function fpSetupMasks() {
+  const cpf = fpEl("fpCpf");
+  const phone = fpEl("fpPhone");
+  const cep = fpEl("fpCep");
+  const state = fpEl("fpState");
+
+  cpf?.addEventListener("input", () => {
+    cpf.value = cpf.value
+      .replace(/\D/g, "")
+      .slice(0, 11)
+      .replace(/(\d{3})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+  });
+
+  phone?.addEventListener("input", () => {
+    phone.value = phone.value
+      .replace(/\D/g, "")
+      .slice(0, 11)
+      .replace(/(\d{2})(\d)/, "($1) $2")
+      .replace(/(\d{5})(\d)/, "$1-$2");
+  });
+
+  cep?.addEventListener("input", () => {
+    cep.value = cep.value
+      .replace(/\D/g, "")
+      .slice(0, 8)
+      .replace(/(\d{5})(\d)/, "$1-$2");
+  });
+
+  state?.addEventListener("input", () => {
+    state.value = state.value.replace(/[^a-zA-Z]/g, "").slice(0, 2).toUpperCase();
+  });
+}
+
+function fpInit() {
+  if (!document.body.classList.contains("finalizar-pedido-page")) return;
+
+  fpRenderCart();
+  fpSetupMasks();
+  fpSetupCepFinder();
+
+  fpEl("fpSavePersonal")?.addEventListener("click", fpSavePersonal);
+  fpEl("fpSaveAddress")?.addEventListener("click", fpSaveAddress);
+  fpEl("fpSaveShipping")?.addEventListener("click", fpSaveShipping);
+  fpEl("fpFinishOrder")?.addEventListener("click", fpFinishOrder);
+
+  document.querySelectorAll('input[name="payment"]').forEach((input) => {
+    input.addEventListener("change", () => fpSelectPayment(input));
+  });
+}
+
+fpInit();
+
+/* =========================================================
+   BUSCADOR AUTOMÁTICO DE CEP - FINALIZAR PEDIDO
+========================================================= */
+
+function onlyNumbers(value) {
+  return String(value || "").replace(/\D/g, "");
+}
+
+function setFieldValue(id, value) {
+  const field = fpEl(id);
+  if (field) field.value = value || "";
+}
+
+function setCepLoading(isLoading) {
+  const cepInput = fpEl("fpCep");
+  const saveButton = fpEl("fpSaveAddress");
+
+  if (cepInput) {
+    cepInput.classList.toggle("fp-loading", isLoading);
+  }
+
+  if (saveButton && isLoading) {
+    saveButton.textContent = "Buscando endereço...";
+  }
+
+  if (saveButton && !isLoading) {
+    saveButton.textContent = "Verifique os itens pendentes acima.";
+  }
+}
+
+async function fpBuscarCep() {
+  const cepInput = fpEl("fpCep");
+  if (!cepInput) return;
+
+  const cep = onlyNumbers(cepInput.value);
+
+  if (cep.length !== 8) {
+    return;
+  }
+
+  setCepLoading(true);
+
+  try {
+    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+    const data = await response.json();
+
+    if (data.erro) {
+      alert("CEP não encontrado. Verifique e tente novamente.");
+      setCepLoading(false);
+      return;
+    }
+
+    setFieldValue("fpCep", data.cep || cepInput.value);
+    setFieldValue("fpStreet", data.logradouro || "");
+    setFieldValue("fpDistrict", data.bairro || "");
+    setFieldValue("fpCity", data.localidade || "");
+    setFieldValue("fpState", data.uf || "");
+
+    const numberInput = fpEl("fpNumber");
+    if (numberInput) {
+      numberInput.focus();
+    }
+
+    fpValidateAddress();
+  } catch (error) {
+    console.error("Erro ao buscar CEP:", error);
+    alert("Não foi possível buscar o CEP agora. Preencha o endereço manualmente.");
+  } finally {
+    setCepLoading(false);
+  }
+}
+
+function fpSetupCepFinder() {
+  const cepInput = fpEl("fpCep");
+
+  if (!cepInput) return;
+
+  cepInput.addEventListener("input", () => {
+    const numbers = onlyNumbers(cepInput.value).slice(0, 8);
+
+    cepInput.value = numbers.replace(/(\d{5})(\d)/, "$1-$2");
+
+    if (numbers.length === 8) {
+      fpBuscarCep();
+    }
+  });
+
+  cepInput.addEventListener("blur", () => {
+    fpBuscarCep();
+  });
+}
+
+fpSetupCepFinder();
+
+/* Move o botão Finalizar Pedido para baixo das etapas no mobile */
+function fpMoveFinishButtonMobile() {
+  if (!document.body.classList.contains("finalizar-pedido-page")) return;
+
+  const finishButton = document.getElementById("fpFinishOrder");
+  const steps = document.querySelector(".fp-steps");
+  const sidebar = document.querySelector(".fp-sidebar");
+
+  if (!finishButton || !steps || !sidebar) return;
+
+  if (window.innerWidth <= 900) {
+    steps.insertAdjacentElement("afterend", finishButton);
+    finishButton.classList.add("fp-finish-button-mobile");
+  } else {
+    sidebar.appendChild(finishButton);
+    finishButton.classList.remove("fp-finish-button-mobile");
+  }
+}
+
+window.addEventListener("load", fpMoveFinishButtonMobile);
+window.addEventListener("resize", fpMoveFinishButtonMobile);
