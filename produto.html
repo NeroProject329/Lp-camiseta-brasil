@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title id="pageTitle">Produto | Vaaai Brasil</title>
+
+  <link rel="stylesheet" href="css/style-produto.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+</head>
+
+<body>
+
+  <div class="product-topbar">
+    Parcelamos suas compras em até 5x sem juros
+  </div>
+
+  <header class="product-header">
+    <div class="product-container product-header-inner">
+
+    <button class="mobile-menu-trigger" type="button" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+      <a href="index.html" class="product-logo">
+        <img src="assets/logo.png" alt="Vaaai Brasil">
+      </a>
+
+      <div class="product-search">
+        <input type="text" placeholder="O que deseja procurar?">
+        <button type="button" aria-label="Buscar">⌕</button>
+      </div>
+
+      <div class="product-header-actions">
+        <div class="header-action-text">
+          <strong>Precisa de ajuda?</strong>
+          <span>Atendimento</span>
+        </div>
+
+        <div class="header-action-text">
+          <strong>Minha conta</strong>
+          <span>Acessar</span>
+        </div>
+
+        <button class="product-cart" type="button" aria-label="Carrinho">
+          <img src="assets/icon-hero/carrinho.png" alt="">
+          <span>0</span>
+        </button>
+      </div>
+    </div>
+
+    <nav class="product-nav">
+      <div class="product-container product-nav-inner">
+        <a href="index.html">Todas categorias</a>
+        <a href="index.html#camisas">Camisas</a>
+        <a href="index.html#combos">Combos</a>
+        <a href="index.html#por-que-comprar">Benefícios</a>
+        <a href="index.html#faq">FAQ</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="product-main product-container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="index.html#camisas">Camisas</a>
+        <span>/</span>
+        <strong id="breadcrumbName">Produto</strong>
+      </div>
+
+      <div class="product-layout">
+        <aside class="product-thumbs" id="productThumbs"></aside>
+
+        <div class="product-gallery">
+          <span class="product-discount" id="productDiscount"></span>
+          <button class="gallery-arrow gallery-arrow-left" type="button" id="prevImage">‹</button>
+          <img id="mainProductImage" src="" alt="">
+          <button class="gallery-arrow gallery-arrow-right" type="button" id="nextImage">›</button>
+        </div>
+
+        <section class="product-info">
+          <span class="product-category" id="productCategory"></span>
+
+          <h1 id="productName">Carregando produto...</h1>
+
+          <div class="product-rating">
+            <span>★★★★★</span>
+            <a href="#avaliacoes">0 avaliações</a>
+          </div>
+
+          <div class="product-mini-info">
+            <div>
+              <strong>Marca</strong>
+              <span id="productBrand">-</span>
+            </div>
+
+            <div>
+              <strong>Tipo</strong>
+              <span id="productType">-</span>
+            </div>
+
+            <div>
+              <strong>Cor</strong>
+              <span id="productColor">-</span>
+            </div>
+          </div>
+
+          <div class="size-block">
+            <p>Escolha o tamanho:</p>
+            <div class="sizes" id="sizeButtons"></div>
+          </div>
+
+          <div class="custom-fields">
+            <label>
+              <span>Nome</span>
+              <input type="text" placeholder="Nome na camisa">
+              <small>+R$ 25,00</small>
+            </label>
+
+            <label>
+              <span>Número</span>
+              <input type="text" placeholder="Número na camisa">
+              <small>+R$ 25,00</small>
+            </label>
+          </div>
+
+          <div class="price-box">
+            <span class="old-price" id="oldPrice"></span>
+            <strong id="productPrice"></strong>
+            <p id="cashPrice"></p>
+            <small id="installments"></small>
+          </div>
+
+          <div class="buy-row">
+            <div class="qty-control">
+              <button type="button" id="minusQty">−</button>
+              <input type="text" id="qtyInput" value="1" readonly>
+              <button type="button" id="plusQty">+</button>
+            </div>
+
+            <button class="buy-button" type="button">Comprar</button>
+          </div>
+
+          <a href="#" class="whatsapp-button" id="whatsappButton" target="_blank">
+            Comprar pelo WhatsApp
+          </a>
+
+          <div class="shipping-area">
+            <div class="shipping-card">
+              <div>
+                <strong>Frete e prazo de entrega</strong>
+                <span>Consulte usando seu CEP</span>
+              </div>
+
+              <div class="cep-form">
+                <input type="text" placeholder="Informe seu CEP">
+                <button type="button">Calcular</button>
+              </div>
+            </div>
+
+            <div class="shipping-card">
+              <div>
+                <strong>Frete grátis</strong>
+                <span>Entrega para todo o Brasil</span>
+              </div>
+
+              <div class="cep-form">
+                <input type="text" placeholder="Informe seu CEP">
+                <button type="button">Calcular</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="product-details product-container">
+      <div class="tabs">
+        <button class="tab-button active" type="button" data-tab="descricao">Descrição geral</button>
+        <button class="tab-button" type="button" data-tab="caracteristicas">Características</button>
+        <button class="tab-button" type="button" data-tab="medidas">Tabela de medidas</button>
+        <button class="tab-button" type="button" data-tab="garantia">Garantia</button>
+        <button class="tab-button" type="button" data-tab="avaliacoes">Avaliações</button>
+      </div>
+
+      <div class="tab-content active" id="descricao">
+        <article class="description-content">
+          <h2 id="descriptionTitle">Descrição do produto</h2>
+          <div id="productDescription"></div>
+
+          <h3>Especificações técnicas</h3>
+          <ul id="productSpecs"></ul>
+
+          <h3>Instruções de lavagem</h3>
+          <ul id="productWashing"></ul>
+        </article>
+      </div>
+
+      <div class="tab-content" id="caracteristicas">
+        <article class="description-content">
+          <h2>Características</h2>
+          <p>
+            Produto desenvolvido para oferecer conforto, leveza e estilo em dias de jogo,
+            treinos ou uso casual.
+          </p>
+        </article>
+      </div>
+
+      <div class="tab-content" id="medidas">
+        <div class="size-table-box">
+          <h2>Tabela de medidas</h2>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Tamanho</th>
+                <th>Altura</th>
+                <th>Largura</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>P</td>
+                <td>70 cm</td>
+                <td>50 cm</td>
+              </tr>
+              <tr>
+                <td>M</td>
+                <td>72 cm</td>
+                <td>52 cm</td>
+              </tr>
+              <tr>
+                <td>G</td>
+                <td>74 cm</td>
+                <td>54 cm</td>
+              </tr>
+              <tr>
+                <td>GG</td>
+                <td>76 cm</td>
+                <td>56 cm</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="tab-content" id="garantia">
+        <article class="description-content">
+          <h2>Garantia</h2>
+          <p>
+            Garantia contra defeitos de fabricação. Para trocas, mantenha o produto sem uso,
+            com embalagem e etiquetas preservadas.
+          </p>
+        </article>
+      </div>
+
+      <div class="tab-content" id="avaliacoes">
+        <article class="description-content">
+          <h2>Avaliações</h2>
+          <p>Ainda não existem avaliações para este produto.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="related-products product-container">
+      <h2>Produtos relacionados</h2>
+      <div class="related-grid" id="relatedGrid"></div>
+    </section>
+  </main>
+
+  <footer class="product-footer">
+    <div class="product-container footer-grid">
+      <div>
+        <img src="assets/logo.png" alt="Vaaai Brasil" class="footer-logo">
+        <p>Vista as cores do Brasil com orgulho, conforto e estilo.</p>
+      </div>
+
+      <div>
+        <h3>Categorias</h3>
+        <a href="index.html#camisas">Camisas</a>
+        <a href="index.html#combos">Combos</a>
+        <a href="index.html#faq">FAQ</a>
+      </div>
+
+      <div>
+        <h3>Atendimento</h3>
+        <a href="#">WhatsApp</a>
+        <a href="#">Trocas e devoluções</a>
+        <a href="#">Frete e entrega</a>
+      </div>
+
+      <div>
+        <h3>Segurança</h3>
+        <p>Compra segura, dados protegidos e atendimento rápido.</p>
+      </div>
+    </div>
+
+    <div class="footer-copy">
+      © 2026 Vaaai Brasil. Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <div class="sticky-buy">
+    <div class="sticky-product">
+      <img id="stickyImage" src="" alt="">
+      <div>
+        <strong id="stickyName">Produto</strong>
+        <span id="stickyPrice">R$ 0,00</span>
+      </div>
+    </div>
+
+    <button type="button">Comprar</button>
+  </div>
+
+  <script src="js/script-produto.js"></script>
+</body>
+</html>

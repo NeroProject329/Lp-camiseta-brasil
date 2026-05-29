@@ -1,0 +1,136 @@
+{
+  "camiseta-amarela": {
+    "id": "camiseta-amarela",
+    "name": "Camisa Brasil Nike I 2026/27 Torcedor Pro Masculina",
+    "shortName": "Camisa Brasil Amarela",
+    "brand": "Nike",
+    "category": "Copa do Mundo 2026",
+    "type": "Torcedor Pro",
+    "color": "Amarela",
+    "badge": "-33%",
+    "oldPrice": "R$ 299,90",
+    "price": "R$ 199,99",
+    "cashPrice": "R$ 179,99 à vista",
+    "installments": "ou em até 5x de R$ 40,00 sem juros",
+    "mainImage": "assets/camiseta-amarela/frente.webp",
+    "descriptionFile": "assets/camiseta-amarela/descrição.txt",
+    "images": [
+      "assets/camiseta-amarela/frente.webp",
+      "assets/camiseta-amarela/costa.webp",
+      "assets/camiseta-amarela/lado.webp",
+      "assets/camiseta-amarela/costa-proximo.webp",
+      "assets/camiseta-amarela/logo-brasil-amarelo.jpg",
+      "assets/camiseta-amarela/pose1.webp"
+    ],
+    "sizes": ["P", "M", "G", "GG"],
+    "defaultSize": "G",
+    "description": "O uniforme principal do Brasil 2026 une tradição, beleza natural do país e tecnologia antissuor para entregar conforto, leveza e presença em dias de jogo ou no uso diário.",
+    "specs": [
+      "Modelo: Camisa Brasil Nike I 2026/27 Torcedor Pro Masculina",
+      "Gênero: Masculino",
+      "Marca: Nike",
+      "Indicado para: Dia a dia e torcida",
+      "Gola: Careca",
+      "Material: Poliéster",
+      "Tecnologia: Dri-FIT",
+      "Manga: Curta",
+      "Escudo: Bordado",
+      "Composição: 100% Poliéster"
+    ],
+    "washing": [
+      "Lavável à máquina",
+      "Não utilizar alvejante",
+      "Secar à sombra",
+      "Não passar ferro sobre estampas ou escudo"
+    ]
+  },
+  "camiseta-azul": {
+    "id": "camiseta-azul",
+    "name": "Camisa Brasil Jordan II 2026/27 Torcedor Pro Masculina",
+    "shortName": "Camisa Brasil Azul",
+    "brand": "Jordan",
+    "category": "Copa do Mundo 2026",
+    "type": "Torcedor Pro",
+    "color": "Azul",
+    "badge": "-33%",
+    "oldPrice": "R$ 299,90",
+    "price": "R$ 199,99",
+    "cashPrice": "R$ 179,99 à vista",
+    "installments": "ou em até 5x de R$ 40,00 sem juros",
+    "mainImage": "assets/camiseta-azul/frente.jpg",
+    "descriptionFile": "assets/camiseta-azul/Descrição.txt",
+    "images": [
+      "assets/camiseta-azul/frente.jpg",
+      "assets/camiseta-azul/costa.webp",
+      "assets/camiseta-azul/detalhes.webp",
+      "assets/camiseta-azul/detalhe-gola.webp",
+      "assets/camiseta-azul/logo-brasil-azul.jpg",
+      "assets/camiseta-azul/pose.webp",
+      "assets/camiseta-azul/vinijr.webp"
+    ],
+    "sizes": ["P", "M", "G", "GG"],
+    "defaultSize": "G",
+    "description": "A camisa azul do Brasil traz visual vibrante, tecnologia antissuor e uma estética marcante para quem quer torcer com estilo e conforto.",
+    "specs": [
+      "Modelo: Camisa Brasil Jordan II 2026/27 Torcedor Pro Masculina",
+      "Gênero: Masculino",
+      "Marca: Jordan",
+      "Indicado para: Dia a dia e torcida",
+      "Gola: Careca",
+      "Material: Poliéster",
+      "Tecnologia: Dri-FIT",
+      "Manga: Curta",
+      "Escudo: Bordado",
+      "Composição: 100% Poliéster"
+    ],
+    "washing": [
+      "Lavável à máquina",
+      "Não utilizar alvejante",
+      "Secar à sombra",
+      "Recomendamos lavar do avesso"
+    ]
+  },
+  "camiseta-preta": {
+    "id": "camiseta-preta",
+    "name": "Camiseta Brasil Jordan Academy Pro 2026 Treino Masculina",
+    "shortName": "Camisa Brasil Preta",
+    "brand": "Jordan",
+    "category": "Treino Brasil 2026",
+    "type": "Treino",
+    "color": "Preta",
+    "badge": "-33%",
+    "oldPrice": "R$ 299,90",
+    "price": "R$ 199,99",
+    "cashPrice": "R$ 179,99 à vista",
+    "installments": "ou em até 5x de R$ 40,00 sem juros",
+    "mainImage": "assets/camiseta-preta/frente.png",
+    "descriptionFile": "assets/camiseta-preta/Descrição.txt",
+    "images": [
+      "assets/camiseta-preta/frente.png",
+      "assets/camiseta-preta/costa.png",
+      "assets/camiseta-preta/lado.png",
+      "assets/camiseta-preta/costa-pose.png",
+      "assets/camiseta-preta/logo-brasil-camiseta-preta.png",
+      "assets/camiseta-preta/pose.png"
+    ],
+    "sizes": ["P", "M", "G", "GG"],
+    "defaultSize": "G",
+    "description": "A camiseta preta de treino do Brasil entrega visual premium, tecnologia antissuor e conforto para treinos, jogos e uso casual.",
+    "specs": [
+      "Modelo: Camiseta Brasil Jordan Academy Pro 2026 Treino Masculina",
+      "Gênero: Masculino",
+      "Marca: Jordan",
+      "Indicado para: Dia a dia e treino",
+      "Tipo: Treino",
+      "Material: Poliéster",
+      "Tecnologia: Antissuor",
+      "Composição: 100% Poliéster"
+    ],
+    "washing": [
+      "Lavável à máquina",
+      "Não utilizar alvejante",
+      "Secar à sombra",
+      "Evitar secadora"
+    ]
+  }
+}
