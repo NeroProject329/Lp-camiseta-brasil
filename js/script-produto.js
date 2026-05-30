@@ -1,5 +1,5 @@
 const PRODUCT_JSON_PATH = "data/produtos.json";
-const WHATSAPP_NUMBER = "5511973946730";
+const WHATSAPP_NUMBER = "5537991144650";
 const CART_STORAGE_KEY = "vaaaiBrasilCart";
 
 const EXTRA_NAME_CENTS = 2500;
@@ -963,7 +963,7 @@ function checkoutCreateWhatsAppLink() {
     `Total: ${checkoutFormatMoney(subtotal)}`
   ].filter(Boolean).join("\n");
 
-  return `https://wa.me/5500000000000?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/5537991144650?text=${encodeURIComponent(message)}`;
 }
 
 async function checkoutRenderRecommendations() {
@@ -1071,7 +1071,7 @@ checkoutInit();
 ========================================================= */
 
 const FP_CART_KEY = "vaaaiBrasilCart";
-const FP_WHATSAPP = "5511973946730";
+const FP_WHATSAPP = "5537991144650";
 
 function fpEl(id) {
   return document.getElementById(id);
