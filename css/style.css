@@ -267,7 +267,7 @@ img {
 }
 
 .hero-text {
-  padding-top: 18px;
+  padding-top: -18px;
 }
 
 .hero-text h1 {
@@ -668,6 +668,7 @@ img {
   .hero-logo-title img {
     width: min(620px, 44vw);
     height: auto;
+    margin-top: -50px;
     left: -10px !important;
     object-fit: contain;
     filter:
@@ -3633,6 +3634,7 @@ img {
   .hero-product {
     top: 172px !important;
     height: 345px !important;
+     order: 2 !important;
   }
 
   .hero-shirt {
@@ -3644,7 +3646,7 @@ img {
   
 
   .hero-benefits {
-    margin-top: 340px !important;
+    margin-top: 215px !important;
   }
 
   .primary-button {
@@ -5637,3 +5639,126 @@ img {
     font-size: 9px !important;
   }
 }
+
+
+/* =========================================================
+   HERO - CARD PAGAMENTO NA ENTREGA
+========================================================= */
+
+.hero-delivery-box {
+  width: 100%;
+  max-width: 530px;
+  margin: 18px 0 26px;
+  padding: 18px 20px;
+  border-radius: 18px;
+
+  background: linear-gradient(180deg, rgba(0, 108, 42, 0.96), rgba(0, 68, 24, 0.96));
+  border: 1px solid rgba(255, 255, 255, 0.16);
+
+  box-shadow:
+    0 16px 34px rgba(0, 74, 28, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+
+  color: #ffffff;
+}
+
+.hero-delivery-box strong {
+  display: block;
+  margin-bottom: 12px;
+
+  color: #ffffff;
+  font-size: 22px;
+  line-height: 1.05;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.hero-delivery-box ul {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
+
+.hero-delivery-box li {
+  position: relative;
+  padding-left: 28px;
+
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.hero-delivery-box li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: -1px;
+
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+
+  display: grid;
+  place-items: center;
+
+  background: #ffd400;
+  color: #004015;
+
+  font-size: 13px;
+  font-weight: 900;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .hero-delivery-box {
+    max-width: 200px !important;
+    margin: 10px 0 0 4px !important;
+    padding: 12px 13px !important;
+    border-radius: 14px !important;
+    text-align: left !important;
+  }
+
+  .hero-delivery-box strong {
+    margin-bottom: 9px !important;
+    font-size: 15px !important;
+    line-height: 1.05 !important;
+    letter-spacing: 0.2px !important;
+  }
+
+  .hero-delivery-box ul {
+    gap: 6px !important;
+  }
+
+  .hero-delivery-box li {
+    padding-left: 22px !important;
+    font-size: 11px !important;
+    line-height: 1.18 !important;
+    font-weight: 800 !important;
+  }
+
+  .hero-delivery-box li::before {
+    width: 16px !important;
+    height: 16px !important;
+    font-size: 10px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-delivery-box {
+    max-width: 168px !important;
+    padding: 11px 12px !important;
+  }
+
+  .hero-delivery-box strong {
+    font-size: 14px !important;
+  }
+
+  .hero-delivery-box li {
+    font-size: 10.5px !important;
+  }
+}
+
