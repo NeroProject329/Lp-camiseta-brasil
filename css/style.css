@@ -4372,3 +4372,1268 @@ img {
     bottom: 18px !important;
   }
 }
+
+/* =========================================================
+   POR QUE COMPRAR CONOSCO - CARROSSEL MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  .why-section {
+    min-height: auto !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(0, 170, 62, 0.26), transparent 42%),
+      linear-gradient(180deg, #00451b 0%, #003615 48%, #00280f 100%) !important;
+  }
+
+  .why-container {
+    width: 100% !important;
+    padding: 18px 0 20px !important;
+  }
+
+  .why-title {
+    width: calc(100% - 42px) !important;
+    margin: 0 auto 18px !important;
+    gap: 8px !important;
+  }
+
+  .why-title span {
+    flex: 1 !important;
+    width: auto !important;
+    max-width: 54px !important;
+  }
+
+  .why-title small {
+    font-size: 17px !important;
+  }
+
+  .why-title h2 {
+    max-width: 230px !important;
+    color: #ffffff !important;
+    font-size: 23px !important;
+    line-height: 1.03 !important;
+    letter-spacing: 3px !important;
+    text-align: center !important;
+    font-weight: 900 !important;
+  }
+
+  .why-grid {
+    width: 100% !important;
+    display: flex !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+
+    padding: 0 28px 4px !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .why-grid::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .why-divider {
+    display: none !important;
+  }
+
+  .why-item {
+    flex: 0 0 100% !important;
+    scroll-snap-align: center !important;
+
+    min-height: 122px !important;
+    padding: 18px 18px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 18px !important;
+
+    border-radius: 18px !important;
+    background: rgba(0, 45, 18, 0.38) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 18px 32px rgba(0, 0, 0, 0.18) !important;
+  }
+
+  .why-icon {
+    width: 58px !important;
+    height: 58px !important;
+    flex: 0 0 58px !important;
+  }
+
+  .why-icon img {
+    width: 54px !important;
+    height: 54px !important;
+    object-fit: contain !important;
+    display: block !important;
+  }
+
+  .why-item strong {
+    color: #ffffff !important;
+    font-size: 19px !important;
+    line-height: 1.02 !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.6px !important;
+  }
+
+  .why-item p {
+    margin-top: 5px !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 13px !important;
+    line-height: 1.15 !important;
+    font-weight: 800 !important;
+  }
+
+  .why-carousel-dots {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 9px !important;
+    margin-top: 14px !important;
+  }
+
+  .why-carousel-dot {
+    width: 8px !important;
+    height: 8px !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.35) !important;
+    padding: 0 !important;
+    transition: 0.25s ease !important;
+  }
+
+  .why-carousel-dot.active {
+    width: 22px !important;
+    background: #f7c600 !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .why-carousel-dots {
+    display: none !important;
+  }
+}
+
+/* =========================================================
+   COMBOS - CARROSSEL MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  .combos-section {
+    overflow: hidden !important;
+  }
+
+  .combos-content {
+    padding-bottom: 24px !important;
+  }
+
+  .combos-heading {
+    margin-bottom: 18px !important;
+    text-align: center !important;
+  }
+
+  .combos-heading h2 {
+    font-size: 26px !important;
+    line-height: 0.98 !important;
+    letter-spacing: 1px !important;
+  }
+
+  .combos-heading p {
+    font-size: 14px !important;
+    margin-top: 6px !important;
+  }
+
+  .combos-grid {
+    width: 100% !important;
+    display: flex !important;
+    gap: 0 !important;
+
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+
+    padding: 0 18px 6px !important;
+  }
+
+  .combos-grid::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .combo-card {
+    flex: 0 0 100% !important;
+    scroll-snap-align: center !important;
+
+    min-width: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* opcional: deixa o card um pouco menor que a tela para dar cara de carrossel
+     se quiser usar isso, substitui o 100% acima por 88% */
+
+  .combos-carousel-dots {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 9px !important;
+    margin-top: 14px !important;
+  }
+
+  .combos-carousel-dot {
+    width: 8px !important;
+    height: 8px !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.35) !important;
+    padding: 0 !important;
+    transition: 0.25s ease !important;
+    cursor: pointer !important;
+  }
+
+  .combos-carousel-dot.active {
+    width: 22px !important;
+    background: #f7c600 !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .combos-carousel-dots {
+    display: none !important;
+  }
+}
+
+
+
+/* =========================================================
+   COMBOS MOBILE - AJUSTE DE TAMANHO E RESPIRO DOS CARDS
+========================================================= */
+
+@media (max-width: 768px) {
+  .combos-content {
+    padding-bottom: 26px !important;
+  }
+
+  .combos-grid {
+    width: 100% !important;
+    display: flex !important;
+    gap: 14px !important;
+
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+
+    padding: 0 18px 8px !important;
+  }
+
+  .combos-grid::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .combo-card {
+    flex: 0 0 88% !important;
+    scroll-snap-align: center !important;
+
+    min-height: 430px !important;
+    padding: 18px 18px 16px !important;
+    margin: 0 !important;
+
+    border-radius: 18px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+  }
+
+  .combo-card.combo-card-featured {
+    min-height: 430px !important;
+  }
+
+  /* topo */
+  .combo-card-header {
+    margin-bottom: 8px !important;
+  }
+
+  .combo-card-header h3 {
+    font-size: 24px !important;
+    line-height: 1 !important;
+    margin-bottom: 4px !important;
+  }
+
+  .combo-card-header span {
+    font-size: 12px !important;
+    line-height: 1.05 !important;
+  }
+
+  .combo-discount {
+    margin: 4px 0 10px !important;
+    font-size: 13px !important;
+    padding: 10px 18px !important;
+    border-radius: 14px !important;
+    align-self: flex-start !important;
+  }
+
+  /* imagens das camisetas */
+  .combo-shirts {
+    margin: 2px 0 14px !important;
+    min-height: 120px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .combo-shirts img {
+    max-width: 100% !important;
+    max-height: 118px !important;
+    object-fit: contain !important;
+  }
+
+  .combo-shirts-one img {
+    max-height: 120px !important;
+  }
+
+  .combo-shirts-two img {
+    max-height: 125px !important;
+  }
+
+  .combo-shirts-three img {
+    max-height: 128px !important;
+  }
+
+  /* infos */
+  .combo-info {
+    margin: 2px 0 16px !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px 12px !important;
+    align-items: start !important;
+  }
+
+  .combo-info > div {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+  }
+
+  .combo-info img {
+    width: 24px !important;
+    height: 24px !important;
+    flex: 0 0 24px !important;
+  }
+
+  .combo-info strong {
+    font-size: 11px !important;
+    line-height: 1 !important;
+  }
+
+  .combo-info small {
+    font-size: 9px !important;
+    line-height: 1.05 !important;
+  }
+
+  /* botão */
+  .combo-button {
+    width: 100% !important;
+    height: 56px !important;
+    margin: 0 0 12px !important;
+    border-radius: 12px !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
+  }
+
+  /* texto de baixo */
+  .combo-bottom-text {
+    display: block !important;
+    text-align: center !important;
+    font-size: 12px !important;
+    line-height: 1.1 !important;
+    margin-top: auto !important;
+    padding-top: 2px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .combo-card {
+    flex: 0 0 90% !important;
+    min-height: 410px !important;
+    padding: 16px 16px 14px !important;
+  }
+
+  .combo-card-header h3 {
+    font-size: 22px !important;
+  }
+
+  .combo-shirts {
+    min-height: 112px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .combo-shirts img {
+    max-height: 108px !important;
+  }
+
+  .combo-shirts-two img {
+    max-height: 114px !important;
+  }
+
+  .combo-shirts-three img {
+    max-height: 118px !important;
+  }
+
+  .combo-info {
+    gap: 8px 10px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .combo-button {
+    height: 54px !important;
+    font-size: 17px !important;
+  }
+
+  .combo-bottom-text {
+    font-size: 11px !important;
+  }
+}
+
+/* =========================================================
+   COMBOS MOBILE - AJUSTE FINAL DE ESPAÇAMENTO
+========================================================= */
+
+@media (max-width: 768px) {
+  .combos-section {
+    overflow: hidden !important;
+  }
+
+  .combos-content {
+    padding: 26px 0 28px !important;
+  }
+
+  .combos-heading {
+    margin-bottom: 18px !important;
+    text-align: center !important;
+  }
+
+  .combos-heading h2 {
+    font-size: 28px !important;
+    line-height: 0.95 !important;
+    letter-spacing: 2px !important;
+  }
+
+  .combos-heading p {
+    font-size: 15px !important;
+    margin-top: 6px !important;
+  }
+
+  .combos-grid {
+    display: flex !important;
+    gap: 14px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    padding: 0 18px 8px !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .combos-grid::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .combo-card {
+    flex: 0 0 88% !important;
+    scroll-snap-align: center !important;
+
+    min-height: 360px !important;
+    height: auto !important;
+
+    padding: 18px 18px 16px !important;
+    margin: 0 !important;
+
+    border-radius: 18px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    gap: 0 !important;
+  }
+
+  .combo-card.combo-card-featured {
+    min-height: 360px !important;
+  }
+
+  .combo-card-header {
+    margin: 0 0 8px !important;
+  }
+
+  .combo-card-header h3 {
+    font-size: 24px !important;
+    line-height: 1 !important;
+    margin: 0 0 4px !important;
+  }
+
+  .combo-card-header span {
+    font-size: 12px !important;
+    line-height: 1 !important;
+  }
+
+  .combo-discount {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+
+    width: fit-content !important;
+    margin: 2px 0 8px !important;
+    padding: 9px 18px !important;
+
+    border-radius: 14px !important;
+
+    font-size: 13px !important;
+    line-height: 1 !important;
+  }
+
+  .combo-shirts {
+    width: 100% !important;
+    min-height: 112px !important;
+    height: 112px !important;
+
+    margin: 0 0 12px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    position: relative !important;
+  }
+
+  .combo-shirts img {
+    max-width: 100% !important;
+    max-height: 112px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  .combo-shirts-one img {
+    max-height: 116px !important;
+  }
+
+  .combo-shirts-two img {
+    max-height: 118px !important;
+  }
+
+  .combo-shirts-three img {
+    max-height: 118px !important;
+  }
+
+  .combo-info {
+    width: 100% !important;
+
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+
+    margin: 0 0 14px !important;
+  }
+
+  .combo-info > div {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+  }
+
+  .combo-info img {
+    width: 25px !important;
+    height: 25px !important;
+    flex: 0 0 25px !important;
+  }
+
+  .combo-info strong {
+    font-size: 11px !important;
+    line-height: 1 !important;
+    letter-spacing: 0.2px !important;
+  }
+
+  .combo-info small {
+    font-size: 9px !important;
+    line-height: 1 !important;
+  }
+
+  .combo-button {
+    width: 100% !important;
+    height: 54px !important;
+
+    margin: 0 0 10px !important;
+
+    border-radius: 12px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    font-size: 18px !important;
+    line-height: 1 !important;
+    font-weight: 900 !important;
+  }
+
+  .combo-bottom-text {
+    display: block !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    text-align: center !important;
+
+    font-size: 12px !important;
+    line-height: 1.1 !important;
+    font-weight: 900 !important;
+
+    color: #ffd400 !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .combo-card {
+    flex: 0 0 90% !important;
+    min-height: 350px !important;
+    padding: 16px 16px 15px !important;
+  }
+
+  .combo-card-header h3 {
+    font-size: 22px !important;
+  }
+
+  .combo-shirts {
+    height: 106px !important;
+    min-height: 106px !important;
+    margin-bottom: 11px !important;
+  }
+
+  .combo-shirts img {
+    max-height: 106px !important;
+  }
+
+  .combo-shirts-two img,
+  .combo-shirts-three img {
+    max-height: 110px !important;
+  }
+
+  .combo-info {
+    margin-bottom: 13px !important;
+  }
+
+  .combo-button {
+    height: 52px !important;
+    font-size: 17px !important;
+  }
+
+  .combo-bottom-text {
+    font-size: 11px !important;
+  }
+}
+
+
+/* =========================================================
+   COMBOS MOBILE - AJUSTE SOMENTE DO CARD 1 CAMISA
+========================================================= */
+
+@media (max-width: 768px) {
+  .combos-grid .combo-card:nth-child(1) {
+    min-height: 360px !important;
+    padding: 18px 18px 16px !important;
+  }
+
+  .combos-grid .combo-card:nth-child(1) .combo-card-header {
+    margin-bottom: 10px !important;
+  }
+
+  .combos-grid .combo-card:nth-child(1) .combo-shirts-one {
+    height: 135px !important;
+    min-height: 135px !important;
+    margin: 2px 0 14px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .combos-grid .combo-card:nth-child(1) .combo-shirts-one img {
+    width: 150px !important;
+    max-width: 150px !important;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    transform: translateY(-2px) scale(1.12) !important;
+  }
+
+  .combos-grid .combo-card:nth-child(1) .combo-info {
+    margin: 0 0 16px !important;
+  }
+
+  .combos-grid .combo-card:nth-child(1) .combo-button {
+    margin-bottom: 12px !important;
+  }
+
+  .combos-grid .combo-card:nth-child(1) .combo-bottom-text {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .combos-grid .combo-card:nth-child(1) .combo-shirts-one {
+    height: 128px !important;
+    min-height: 128px !important;
+  }
+
+  .combos-grid .combo-card:nth-child(1) .combo-shirts-one img {
+    width: 78px !important;
+    max-width: 78px !important;
+    transform: translateY(-2px) scale(1.12) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .combos-grid {
+    overscroll-behavior-x: contain !important;
+    scroll-padding-left: 18px !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   CONTADOR MOBILE - DESIGN NOVO
+========================================================= */
+
+.countdown-shirt-mobile,
+.countdown-mobile-leaf {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .countdown-section {
+    position: relative !important;
+    width: 100% !important;
+    min-height: 650px !important;
+    overflow: hidden !important;
+    background: #f5c400 !important;
+    display: block !important;
+    padding: 0 !important;
+  }
+
+  .countdown-section::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+    background-image: url("../assets/fundo-mobile-contador.png") !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: top center !important;
+  }
+
+  .countdown-section::after {
+    display: none !important;
+  }
+
+  .countdown-content {
+    position: relative !important;
+    z-index: 2 !important;
+    width: 100% !important;
+    min-height: 650px !important;
+    margin: 0 auto !important;
+    padding: 32px 18px 28px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0 !important;
+  }
+
+  .countdown-icon {
+    display: none !important;
+  }
+
+  .countdown-mobile-leaf {
+    display: block !important;
+    width: 34px !important;
+    height: 40px !important;
+    margin: 0 auto 10px !important;
+    font-size: 0 !important;
+    position: relative !important;
+  }
+
+  .countdown-mobile-leaf::before {
+    content: "❦" !important;
+    display: block !important;
+    color: #006b2d !important;
+    font-size: 34px !important;
+    line-height: 1 !important;
+    transform: rotate(180deg) !important;
+  }
+
+  .countdown-text {
+    width: 100% !important;
+    min-width: 0 !important;
+    text-align: center !important;
+    position: relative !important;
+    z-index: 4 !important;
+  }
+
+  .countdown-text h2 {
+    max-width: 315px !important;
+    margin: 0 auto !important;
+    color: #061c30 !important;
+    font-size: 31px !important;
+    line-height: 0.98 !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    font-style: italic !important;
+  }
+
+  .countdown-text strong {
+    display: block !important;
+    max-width: 315px !important;
+    margin: 0 auto !important;
+    color: #061c30 !important;
+    font-size: 31px !important;
+    line-height: 0.98 !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    font-style: italic !important;
+  }
+
+  .countdown-text p {
+    margin: 9px auto 0 !important;
+    color: #071407 !important;
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+    font-weight: 500 !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+  }
+
+  .countdown-shirt-mobile {
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    height: 310px !important;
+    margin: 10px 0 0 !important;
+    z-index: 3 !important;
+    pointer-events: none !important;
+  }
+
+  .countdown-shirt-mobile img {
+    position: absolute !important;
+    left: 50% !important;
+    top: 0 !important;
+    width: 390px !important;
+    max-width: none !important;
+    height: auto !important;
+    transform: translateX(-50%) !important;
+    object-fit: contain !important;
+    filter: drop-shadow(0 22px 28px rgba(0, 0, 0, 0.32)) !important;
+  }
+
+ .countdown-timer {
+  width: calc(100% + 36px) !important;
+  margin: 14px -18px 0 !important;
+  min-height: 110px !important;
+
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  align-items: stretch !important;
+  gap: 0 !important;
+
+  background: rgba(245, 196, 0, 0.88) !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 -12px 24px rgba(126, 94, 0, 0.08) !important;
+  position: relative !important;
+  z-index: 5 !important;
+}
+
+  .countdown-timer b {
+    display: none !important;
+  }
+
+  .countdown-box {
+    width: 100% !important;
+    height: 110px !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #06121f !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-right: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .countdown-box:last-child {
+    border-right: 0 !important;
+  }
+
+  .countdown-box span {
+    color: #06121f !important;
+    font-size: 44px !important;
+    line-height: 0.9 !important;
+    font-weight: 900 !important;
+    letter-spacing: 2px !important;
+  }
+
+  .countdown-box small {
+    margin-top: 10px !important;
+    color: #06121f !important;
+    font-size: 12px !important;
+    line-height: 1 !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+  }
+}
+
+/* AJUSTE PARA CELULARES MENORES */
+@media (max-width: 390px) {
+  .countdown-section {
+    min-height: 620px !important;
+  }
+
+  .countdown-content {
+    min-height: auto !important;
+    padding-top: 26px !important;
+  }
+
+  .countdown-text h2,
+  .countdown-text strong {
+    max-width: 300px !important;
+    font-size: 28px !important;
+  }
+
+  .countdown-text p {
+    font-size: 13px !important;
+  }
+
+  .countdown-shirt-mobile {
+    height: 295px !important;
+    margin-top: 8px !important;
+  }
+
+  .countdown-shirt-mobile img {
+    width: 365px !important;
+  }
+
+  .countdown-timer {
+    min-height: 102px !important;
+  }
+
+  .countdown-box {
+    height: 102px !important;
+  }
+
+  .countdown-box span {
+    font-size: 39px !important;
+  }
+
+  .countdown-box small {
+    font-size: 11px !important;
+  }
+
+  .countdown-section,
+.countdown-content,
+.countdown-timer,
+.countdown-box,
+.countdown-box span,
+.countdown-box small {
+  overflow-anchor: none !important;
+}
+
+}
+
+
+/* =========================================================
+   CORREÇÃO - PARAR PÁGINA DE PUXAR PARA CIMA NO FINAL
+========================================================= */
+
+.countdown-section,
+.site-footer {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  overflow-anchor: none !important;
+}
+
+.countdown-section *,
+.site-footer * {
+  overflow-anchor: none !important;
+}
+
+@media (max-width: 768px) {
+  .countdown-section,
+  .site-footer {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .countdown-section.scroll-reveal-section,
+  .site-footer.scroll-reveal-section {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .countdown-section.scroll-reveal-section.is-visible,
+  .countdown-section.scroll-reveal-section.is-after,
+  .countdown-section.scroll-reveal-section.is-before,
+  .site-footer.scroll-reveal-section.is-visible,
+  .site-footer.scroll-reveal-section.is-after,
+  .site-footer.scroll-reveal-section.is-before {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+
+/* =========================================================
+   FOOTER MOBILE - VA AA I BRASIL
+========================================================= */
+
+@media (max-width: 768px) {
+  .site-footer {
+    position: relative !important;
+    overflow: hidden !important;
+    background:
+      radial-gradient(circle at 20% 0%, rgba(0, 118, 46, 0.18), transparent 32%),
+      linear-gradient(180deg, #03160e 0%, #020b08 100%) !important;
+    border-top: 0 !important;
+    padding: 0 !important;
+  }
+
+  .site-footer::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background:
+      radial-gradient(circle at 85% 20%, rgba(0, 87, 184, 0.12), transparent 24%),
+      radial-gradient(circle at 15% 80%, rgba(0, 120, 50, 0.12), transparent 26%) !important;
+    pointer-events: none !important;
+  }
+
+  .footer-content {
+    position: relative !important;
+    z-index: 2 !important;
+    width: calc(100% - 28px) !important;
+    margin: 0 auto !important;
+    padding: 38px 0 30px !important;
+
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 30px 26px !important;
+    align-items: start !important;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1 !important;
+    max-width: 100% !important;
+  }
+
+  .footer-brand img {
+    width: 118px !important;
+    margin: 0 0 18px !important;
+  }
+
+  .footer-brand p {
+    max-width: 235px !important;
+    color: rgba(255, 255, 255, 0.92) !important;
+    font-size: 17px !important;
+    line-height: 1.32 !important;
+    font-weight: 800 !important;
+  }
+
+  .footer-links,
+  .footer-support {
+    min-width: 0 !important;
+  }
+
+  .footer-links h3,
+  .footer-support h3 {
+    margin: 0 0 18px !important;
+    color: #ffd400 !important;
+    font-size: 14px !important;
+    line-height: 1 !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+  }
+
+  .footer-links a {
+    display: block !important;
+    width: fit-content !important;
+    margin: 0 0 13px !important;
+    color: #ffffff !important;
+    font-size: 12px !important;
+    line-height: 1.05 !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.8px !important;
+  }
+
+  .footer-support {
+    gap: 0 !important;
+  }
+
+  .footer-info-item {
+    display: grid !important;
+    grid-template-columns: 28px 1fr !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin: 0 0 16px !important;
+  }
+
+  .footer-info-item img {
+    width: 24px !important;
+    height: 24px !important;
+    object-fit: contain !important;
+    filter: brightness(0) invert(1) !important;
+    opacity: 0.92 !important;
+  }
+
+  .footer-info-item strong {
+    display: block !important;
+    color: #ffffff !important;
+    font-size: 11px !important;
+    line-height: 1.05 !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+  }
+
+  .footer-info-item span {
+    display: block !important;
+    margin-top: 3px !important;
+    color: rgba(255, 255, 255, 0.78) !important;
+    font-size: 10px !important;
+    line-height: 1.15 !important;
+    font-weight: 800 !important;
+  }
+
+  .footer-bottom {
+    position: relative !important;
+    z-index: 2 !important;
+    width: calc(100% - 28px) !important;
+    margin: 0 auto !important;
+    padding: 18px 0 22px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
+
+    display: grid !important;
+    grid-template-columns: 1.35fr 1fr !important;
+    align-items: center !important;
+    gap: 18px !important;
+  }
+
+  .footer-bottom span {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 10px !important;
+    line-height: 1.25 !important;
+    font-weight: 800 !important;
+  }
+
+  .footer-bottom div {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    align-items: center !important;
+    gap: 14px !important;
+  }
+
+  .footer-bottom a {
+    color: #ffffff !important;
+    font-size: 10px !important;
+    line-height: 1.05 !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.4px !important;
+    text-align: left !important;
+  }
+}
+
+/* AJUSTE PARA CELULARES PEQUENOS */
+@media (max-width: 390px) {
+  .footer-content {
+    width: calc(100% - 24px) !important;
+    gap: 28px 20px !important;
+  }
+
+  .footer-brand img {
+    width: 108px !important;
+  }
+
+  .footer-brand p {
+    max-width: 210px !important;
+    font-size: 16px !important;
+  }
+
+  .footer-links h3,
+  .footer-support h3 {
+    font-size: 13px !important;
+    letter-spacing: 1.6px !important;
+  }
+
+  .footer-links a {
+    font-size: 11px !important;
+  }
+
+  .footer-info-item {
+    grid-template-columns: 24px 1fr !important;
+    gap: 8px !important;
+  }
+
+  .footer-info-item img {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  .footer-info-item strong {
+    font-size: 10px !important;
+  }
+
+  .footer-info-item span {
+    font-size: 9px !important;
+  }
+
+  .footer-bottom {
+    width: calc(100% - 24px) !important;
+    grid-template-columns: 1.25fr 1fr !important;
+    gap: 14px !important;
+  }
+
+  .footer-bottom span,
+  .footer-bottom a {
+    font-size: 9px !important;
+  }
+}

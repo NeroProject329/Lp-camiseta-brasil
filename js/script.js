@@ -68,7 +68,7 @@ if (countdown) {
 ========================================= */
 
 const sectionsToAnimate = document.querySelectorAll(
-  ".why-section, .combos-section, .countdown-section, .site-footer"
+  ".why-section, .combos-section"
 );
 
 let lastScrollY = window.scrollY;
@@ -284,3 +284,150 @@ if (heroSection) {
     { passive: true }
   );
 }
+
+/* =========================================================
+   POR QUE COMPRAR CONOSCO - CARROSSEL MOBILE
+========================================================= */
+
+function setupWhyCarousel() {
+  const track = document.querySelector(".why-grid");
+  const dotsContainer = document.getElementById("whyCarouselDots");
+
+  if (!track || !dotsContainer) return;
+
+  const slides = Array.from(track.querySelectorAll(".why-item"));
+
+  if (!slides.length) return;
+
+  dotsContainer.innerHTML = slides
+    .map((_, index) => {
+      return `<button class="why-carousel-dot ${index === 0 ? "active" : ""}" type="button" aria-label="Ir para item ${index + 1}"></button>`;
+    })
+    .join("");
+
+  const dots = Array.from(dotsContainer.querySelectorAll(".why-carousel-dot"));
+
+  function getCurrentIndex() {
+    const trackLeft = track.scrollLeft;
+    const slideWidth = slides[0].offsetWidth;
+
+    return Math.round(trackLeft / slideWidth);
+  }
+
+  function updateDots() {
+    const currentIndex = Math.max(0, Math.min(getCurrentIndex(), dots.length - 1));
+
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("active", index === currentIndex);
+    });
+  }
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      slides[index]({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest"
+      });
+    });
+  });
+
+  track.addEventListener("scroll", () => {
+    window.requestAnimationFrame(updateDots);
+  });
+
+  let autoSlide = window.setInterval(() => {
+    if (window.innerWidth > 768) return;
+
+    const currentIndex = getCurrentIndex();
+    const nextIndex = currentIndex >= slides.length - 1 ? 0 : currentIndex + 1;
+
+    slides[nextIndex]({
+      behavior: "smooth",
+      inline: "center",
+      block: "nearest"
+    });
+  }, 3500);
+
+  track.addEventListener("touchstart", () => {
+    window.clearInterval(autoSlide);
+  }, { passive: true });
+}
+
+document.addEventListener("DOMContentLoaded", setupWhyCarousel);
+
+
+function scrollCarouselToSlide(track, slides, index) {
+  const slide = slides[index];
+  if (!track || !slide) return;
+
+  const left = slide.offsetLeft - track.offsetLeft;
+
+  track.scrollTo({
+    left,
+    behavior: "smooth"
+  });
+}
+/* =========================================================
+   COMBOS - CARROSSEL MOBILE
+========================================================= */
+
+function setupCombosCarousel() {
+  const track = document.querySelector(".combos-grid");
+  const dotsContainer = document.getElementById("combosCarouselDots");
+
+  if (!track || !dotsContainer) return;
+
+  const slides = Array.from(track.querySelectorAll(".combo-card"));
+  if (!slides.length) return;
+
+  dotsContainer.innerHTML = slides
+    .map((_, index) => {
+      return `<button class="combos-carousel-dot ${index === 0 ? "active" : ""}" type="button" aria-label="Ir para combo ${index + 1}"></button>`;
+    })
+    .join("");
+
+  const dots = Array.from(dotsContainer.querySelectorAll(".combos-carousel-dot"));
+
+  function getCurrentIndex() {
+    const slideWidth = slides[0].offsetWidth;
+    const gap = parseFloat(getComputedStyle(track).gap) || 0;
+
+    return Math.round(track.scrollLeft / (slideWidth + gap));
+  }
+
+  function updateDots() {
+    const currentIndex = Math.max(0, Math.min(getCurrentIndex(), dots.length - 1));
+
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("active", index === currentIndex);
+    });
+  }
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      scrollCarouselToSlide(track, slides, index);
+    });
+  });
+
+  track.addEventListener("scroll", () => {
+    window.requestAnimationFrame(updateDots);
+  });
+
+  let autoSlide = window.setInterval(() => {
+    if (window.innerWidth > 768) return;
+
+    const currentIndex = getCurrentIndex();
+    const nextIndex = currentIndex >= slides.length - 1 ? 0 : currentIndex + 1;
+
+    scrollCarouselToSlide(track, slides, nextIndex);
+  }, 3500);
+
+  track.addEventListener("touchstart", () => {
+    window.clearInterval(autoSlide);
+  }, { passive: true });
+
+  updateDots();
+}
+
+document.addEventListener("DOMContentLoaded", setupCombosCarousel);
