@@ -4280,3 +4280,195 @@ body.cart-open {
     min-height: 186px;
   }
 }
+
+
+/* =========================================================
+   PRODUTO - CONFIANÇA LOCAL / PAGAMENTO NA ENTREGA
+========================================================= */
+
+.product-local-trust {
+  margin: 0 0 18px;
+  padding: 16px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #ecfff4, #dffbea);
+  border: 1px solid rgba(22, 163, 74, 0.28);
+  box-shadow: 0 12px 28px rgba(22, 163, 74, 0.10);
+}
+
+.product-local-trust strong {
+  display: block;
+  margin-bottom: 10px;
+  color: #086b2d;
+  font-size: 15px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.product-local-trust ul {
+  display: grid;
+  gap: 7px;
+  list-style: none;
+  margin-bottom: 12px;
+}
+
+.product-local-trust li {
+  color: #123322;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.product-local-trust li::before {
+  content: "✓";
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: #16a34a;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.product-local-trust p {
+  color: #064e22;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.product-how-it-works {
+  margin: 0 0 20px;
+  padding: 16px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+}
+
+.product-how-it-works h3 {
+  margin-bottom: 12px;
+  color: #111111;
+  font-size: 15px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.product-how-it-works div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.product-how-it-works div:last-child {
+  border-bottom: 0;
+}
+
+.product-how-it-works span {
+  width: 27px;
+  height: 27px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #0057b8;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.product-how-it-works p {
+  color: #222222;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.product-rating-real {
+  align-items: center;
+}
+
+.product-rating-real strong {
+  color: #333333;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   CHECKOUT - PAGAMENTO SOMENTE NA ENTREGA
+========================================================= */
+
+.checkout-pay-after-card {
+  margin: 18px 0;
+  padding: 18px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #ecfff4, #dcfce7);
+  border: 1px solid rgba(22, 163, 74, 0.28);
+  box-shadow: 0 14px 34px rgba(22, 163, 74, 0.12);
+}
+
+.checkout-pay-after-card strong {
+  display: block;
+  margin-bottom: 12px;
+  color: #065f2c;
+  font-size: 16px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.checkout-pay-after-card div {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.checkout-pay-after-card p {
+  color: #133321;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.fp-payment-warning,
+.fp-final-warning {
+  margin-bottom: 16px;
+  padding: 15px;
+  border-radius: 10px;
+  background: #ecfff4;
+  border: 1px solid rgba(22, 163, 74, 0.25);
+}
+
+.fp-payment-warning strong,
+.fp-final-warning strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #086b2d;
+  font-size: 14px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.fp-payment-warning p,
+.fp-final-warning p {
+  color: #183527;
+  font-size: 13px;
+  line-height: 1.45;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .checkout-pay-after-card div {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-pay-after-card {
+    padding: 16px;
+  }
+
+  .checkout-pay-after-card strong {
+    font-size: 14px;
+  }
+
+  .checkout-pay-after-card p {
+    font-size: 12px;
+  }
+}

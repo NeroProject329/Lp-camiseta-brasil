@@ -153,7 +153,7 @@
           <header class="fp-step-header">
             <div>
               <span class="fp-step-number">3</span>
-              <h2>Formas de envio</h2>
+              <h2>Entrega local</h2>
             </div>
 
             <div class="fp-step-summary" id="fpShippingSummary">
@@ -163,13 +163,13 @@
 
           <div class="fp-step-content">
             <label class="fp-option-card">
-              <input type="radio" name="shipping" value="Transportadora" checked>
-              <div>
-                <strong>Transportadora</strong>
-                <span>Entrega grátis para todo o Brasil</span>
-              </div>
-              <b>Grátis</b>
-            </label>
+  <input type="radio" name="shipping" value="Entrega em casa" checked>
+  <div>
+    <strong>Entrega em casa</strong>
+    <span id="fpShippingCityText">Entrega local</span>
+  </div>
+  <b>Grátis</b>
+</label>
 
             <button class="fp-save-button" id="fpSaveShipping" type="button">
               Continuar
@@ -182,7 +182,7 @@
           <header class="fp-step-header">
             <div>
               <span class="fp-step-number">4</span>
-              <h2>Pagamento</h2>
+              <h2>Pagamento após recebimento</h2>
             </div>
 
             <div class="fp-step-summary" id="fpPaymentSummary">
@@ -191,34 +191,40 @@
           </header>
 
           <div class="fp-step-content">
+
+            <div class="fp-payment-warning">
+              <strong>Você não fará nenhum pagamento agora.</strong>
+              <p>Após receber sua camisa em casa, você poderá pagar via Pix, dinheiro ou cartão.</p>
+            </div>
+
             <label class="fp-payment-option">
-              <input type="radio" name="payment" value="pix" data-discount="10">
+              <input type="radio" name="payment" value="pix_entrega" data-discount="0">
               <span class="fp-payment-icon">❖</span>
-              <div>
-                <strong>Pix</strong>
-                <small>10% de desconto</small>
-              </div>
-              <b>à vista</b>
+            <div>
+              <strong>Pix na entrega</strong>
+              <small>Pague somente ao receber</small>
+            </div>
+              <b>na entrega</b>
             </label>
 
             <label class="fp-payment-option">
-              <input type="radio" name="payment" value="credit" data-discount="0">
+              <input type="radio" name="payment" value="cartao_entrega" data-discount="0">
               <span class="fp-payment-icon">💳</span>
-              <div>
-                <strong>Cartão de Crédito</strong>
-                <small>Até 5x sem juros</small>
-              </div>
-              <b>até 12x</b>
+            <div>
+              <strong>Cartão na entrega</strong>
+              <small>Pagamento após conferir a camisa</small>
+            </div>
+              <b>na entrega</b>
             </label>
 
             <label class="fp-payment-option">
-              <input type="radio" name="payment" value="boleto" data-discount="10">
-              <span class="fp-payment-icon">▥</span>
-              <div>
-                <strong>Boleto Bancário</strong>
-                <small>10% de desconto</small>
-              </div>
-              <b>à vista</b>
+              <input type="radio" name="payment" value="dinheiro_entrega" data-discount="0">
+              <span class="fp-payment-icon">💵</span>
+            <div>
+              <strong>Dinheiro na entrega</strong>
+              <small>Pague quando receber em casa</small>
+            </div>
+              <b>na entrega</b>
             </label>
           </div>
         </article>
@@ -270,8 +276,13 @@
           </button>
         </section>
 
+        <div class="fp-final-warning">
+          <strong>Importante</strong>
+          <p>Seu pedido será enviado para nosso WhatsApp para confirmação da entrega. Nenhum pagamento será cobrado agora.</p>
+        </div>
+
         <button class="fp-finish-button" id="fpFinishOrder" type="button" disabled>
-          Finalizar pedido
+            Solicitar entrega
         </button>
       </aside>
 

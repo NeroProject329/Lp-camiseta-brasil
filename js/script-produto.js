@@ -1234,6 +1234,30 @@ function fpValidateAddress() {
   return valid;
 }
 
+
+function fpGetLeadCity() {
+  return fpEl("fpCity")?.value.trim() || "";
+}
+
+function fpUpdateShippingCityText() {
+  const city = fpGetLeadCity();
+
+  const shippingText = fpEl("fpShippingCityText");
+  const shippingSummary = fpEl("fpShippingSummary");
+
+  if (shippingText) {
+    shippingText.textContent = city
+      ? `Entrega rápida em ${city}`
+      : "Entrega local";
+  }
+
+  if (shippingSummary) {
+    shippingSummary.textContent = city
+      ? `Entrega local em ${city}`
+      : "Entrega em casa";
+  }
+}
+
 function fpSaveAddress() {
   if (!fpValidateAddress()) {
     return;
@@ -1247,7 +1271,7 @@ function fpSaveAddress() {
     <span>${fpEl("fpNumber").value}</span>
   `;
 
-  fpEl("fpShippingSummary").textContent = "Transportadora";
+  fpUpdateShippingCityText();
   fpEl("fpStep3")?.classList.remove("fp-step-locked");
   fpOpenStep(3);
   fpUpdateSummary();
@@ -1255,7 +1279,7 @@ function fpSaveAddress() {
 
 function fpSaveShipping() {
   fpState.shipping = true;
-  fpEl("fpShippingSummary").textContent = "Transportadora";
+  fpUpdateShippingCityText();
   fpEl("fpPaymentSummary").textContent = "";
   fpEl("fpStep4")?.classList.remove("fp-step-locked");
   fpOpenStep(4);
@@ -1282,14 +1306,13 @@ function fpSelectPayment(input) {
 
 function fpGetPaymentLabel(paymentValue) {
   const labels = {
-    pix: "Pix",
-    credit: "Cartão de Crédito",
-    boleto: "Boleto Bancário"
+    pix_entrega: "Pix na entrega",
+    cartao_entrega: "Cartão na entrega",
+    dinheiro_entrega: "Dinheiro na entrega"
   };
 
   return labels[paymentValue] || paymentValue || "Não informado";
 }
-
 function fpHasCustomization(name, number) {
   return Boolean(String(name || "").trim() || String(number || "").trim());
 }
@@ -1380,7 +1403,7 @@ function fpFinishOrder() {
   ].join("\n");
 
   const payment = [
-    `Forma de pagamento: ${paymentLabel}`,
+    `Forma de pagamento após recebimento: ${paymentLabel}`,
     `Desconto aplicado: ${fpState.discountPercent}%`,
     `Subtotal: ${fpMoney(subtotal)}`,
     `Desconto: ${fpMoney(discount)}`,
@@ -1540,6 +1563,8 @@ async function fpBuscarCep() {
     setFieldValue("fpDistrict", data.bairro || "");
     setFieldValue("fpCity", data.localidade || "");
     setFieldValue("fpState", data.uf || "");
+
+    fpUpdateShippingCityText();
 
     const numberInput = fpEl("fpNumber");
     if (numberInput) {
