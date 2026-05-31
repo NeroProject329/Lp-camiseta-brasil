@@ -4472,3 +4472,74 @@ body.cart-open {
     font-size: 12px;
   }
 }
+
+
+/* =========================================================
+   PRODUTO - CONSULTA DE CEP
+========================================================= */
+
+.product-shipping-area {
+  margin-top: 18px;
+}
+
+.shipping-card-main {
+  grid-template-columns: 1fr;
+  padding: 16px;
+  border: 1px solid #e6e6e6;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.product-cep-form {
+  margin-top: 12px;
+}
+
+.product-shipping-result {
+  display: block;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #f7f7f7;
+  color: #333333;
+  font-size: 12px;
+  line-height: 1.45;
+  font-weight: 600;
+}
+
+.product-shipping-result:empty {
+  display: none;
+}
+
+.product-shipping-result strong {
+  color: #0b7a34;
+  font-weight: 900;
+}
+
+.product-shipping-result.success {
+  background: #ecfff3;
+  border: 1px solid #b9efca;
+  color: #155f2d;
+}
+
+.product-shipping-result.error {
+  background: #fff1f1;
+  border: 1px solid #f3b7b7;
+  color: #9b1c1c;
+}
+
+.product-cep-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .shipping-card-main {
+    padding: 13px;
+    border-radius: 13px;
+  }
+
+  .product-shipping-result {
+    font-size: 11px;
+    padding: 10px 12px;
+  }
+}

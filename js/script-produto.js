@@ -2,8 +2,8 @@ const PRODUCT_JSON_PATH = "data/produtos.json";
 const WHATSAPP_NUMBER = "5537991144650";
 const CART_STORAGE_KEY = "vaaaiBrasilCart";
 
-const EXTRA_NAME_CENTS = 2500;
-const EXTRA_NUMBER_CENTS = 2500;
+const EXTRA_NAME_CENTS = 2000;
+const EXTRA_NUMBER_CENTS = 2000;
 
 const params = new URLSearchParams(window.location.search);
 
@@ -794,12 +794,136 @@ async function loadProducts() {
 }
 
 
+/* =========================================================
+   PRODUTO - CONSULTA DE CEP VISUAL
+   Não interfere no checkout
+========================================================= */
+
+const PRODUCT_DELIVERY_BUSINESS_DAYS = 7;
+
+function productOnlyDigits(value) {
+  return String(value || "").replace(/\D/g, "");
+}
+
+function formatProductCep(value) {
+  const digits = productOnlyDigits(value).slice(0, 8);
+
+  if (digits.length > 5) {
+    return `${digits.slice(0, 5)}-${digits.slice(5)}`;
+  }
+
+  return digits;
+}
+
+function addBusinessDays(startDate, days) {
+  const date = new Date(startDate);
+  let addedDays = 0;
+
+  while (addedDays < days) {
+    date.setDate(date.getDate() + 1);
+
+    const day = date.getDay();
+
+    // 0 = domingo, 6 = sábado
+    if (day !== 0 && day !== 6) {
+      addedDays++;
+    }
+  }
+
+  return date;
+}
+
+function formatProductDate(date) {
+  return date.toLocaleDateString("pt-BR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric"
+  });
+}
+
+async function consultProductCep() {
+  const cepInput = getEl("productCep");
+  const button = getEl("productCepButton");
+  const result = getEl("productShippingResult");
+  const cityLabel = getEl("productDeliveryCity");
+
+  if (!cepInput || !button || !result) return;
+
+  const cep = productOnlyDigits(cepInput.value);
+
+  result.className = "product-shipping-result";
+
+  if (cep.length !== 8) {
+    result.textContent = "Digite um CEP válido para consultar o prazo.";
+    result.classList.add("error");
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = "Consultando...";
+  result.textContent = "Consultando prazo de entrega...";
+
+  try {
+    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+    const data = await response.json();
+
+    if (!response.ok || data.erro) {
+      throw new Error("CEP não encontrado");
+    }
+
+    const city = data.localidade || "sua cidade";
+    const uf = data.uf || "";
+    const deliveryDate = addBusinessDays(new Date(), PRODUCT_DELIVERY_BUSINESS_DAYS);
+
+    result.innerHTML = `
+      Entrega estimada para <strong>${city}${uf ? `/${uf}` : ""}</strong>: 
+      <strong>até ${PRODUCT_DELIVERY_BUSINESS_DAYS} dias úteis</strong>
+      <br>
+      Previsão aproximada: ${formatProductDate(deliveryDate)}
+    `;
+
+    result.classList.add("success");
+
+    if (cityLabel) {
+      cityLabel.textContent = `${city}${uf ? `/${uf}` : ""}`;
+    }
+  } catch (error) {
+    result.textContent = "Não conseguimos consultar esse CEP. Verifique e tente novamente.";
+    result.classList.add("error");
+  } finally {
+    button.disabled = false;
+    button.textContent = "Calcular";
+  }
+}
+
+function setupProductCepEstimate() {
+  const cepInput = getEl("productCep");
+  const button = getEl("productCepButton");
+
+  if (!cepInput || !button) return;
+
+  cepInput.addEventListener("input", () => {
+    cepInput.value = formatProductCep(cepInput.value);
+  });
+
+  cepInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      consultProductCep();
+    }
+  });
+
+  button.addEventListener("click", consultProductCep);
+}
+
+
 
 setupGalleryArrows();
 setupQuantity();
 setupTabs();
 setupCustomizationFields();
 setupCartEvents();
+setupProductCepEstimate();
 updateCartBadges();
 renderCart();
 loadProducts();

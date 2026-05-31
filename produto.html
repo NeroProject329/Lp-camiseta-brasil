@@ -124,13 +124,13 @@
             <label>
                 <span>Nome</span>
                 <input id="customName" type="text" placeholder="Nome na camisa" maxlength="12">
-                <small>+R$ 25,00</small>
+                <small>+R$ 20,00</small>
             </label>
 
             <label>
                 <span>Número</span>
                 <input id="customNumber" type="text" placeholder="Número na camisa" maxlength="2" inputmode="numeric">
-                <small>+R$ 25,00</small>
+                <small>+R$ 20,00</small>
             </label>
           </div>
 
@@ -161,7 +161,7 @@
     <li>Troca fácil pelo WhatsApp</li>
   </ul>
 
-  <p>📍 Entregamos em toda [SUA CIDADE]</p>
+  <p>📍 Entregamos em <span id="productDeliveryCity">toda sua região</span></p>
 </div>
 
           <div class="buy-row">
@@ -197,31 +197,30 @@
   </div>
 </div>
 
-          <div class="shipping-area">
-            <div class="shipping-card">
-              <div>
-                <strong>Frete e prazo de entrega</strong>
-                <span>Consulte usando seu CEP</span>
-              </div>
+          <div class="shipping-area product-shipping-area">
+  <div class="shipping-card shipping-card-main">
+    <div>
+      <strong>Frete e prazo de entrega</strong>
+      <span>Digite seu CEP para consultar o prazo de entrega</span>
+    </div>
 
-              <div class="cep-form">
-                <input type="text" placeholder="Informe seu CEP">
-                <button type="button">Calcular</button>
-              </div>
-            </div>
+    <div class="cep-form product-cep-form">
+      <input 
+        id="productCep" 
+        type="text" 
+        placeholder="Informe seu CEP" 
+        maxlength="9"
+        inputmode="numeric"
+      >
 
-            <div class="shipping-card">
-              <div>
-                <strong>Frete grátis</strong>
-                <span>Entrega para todo o Brasil</span>
-              </div>
+      <button id="productCepButton" type="button">
+        Calcular
+      </button>
+    </div>
 
-              <div class="cep-form">
-                <input type="text" placeholder="Informe seu CEP">
-                <button type="button">Calcular</button>
-              </div>
-            </div>
-          </div>
+    <p class="product-shipping-result" id="productShippingResult"></p>
+  </div>
+</div>
         </section>
       </div>
     </section>
